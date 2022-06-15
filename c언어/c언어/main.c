@@ -166,4 +166,70 @@
 //    }
 //    return 0;
 //}
-
+//#include <stdio.h>//>
+//#include "string.h"
+//struct Person {
+//    double height;
+//    double weight;
+//    char name[10];
+//    short grade;
+//};
+//int main() {
+//    struct Person person;
+//    person.height = 174.2;
+//    person.weight = 67.8;
+//    strcpy(person.name, "홍승재");
+//    person.grade = 1;
+//    printf("person.height : %.1lf\n", person.height);
+//    printf("person.weight : %.1lf\n", person.weight);
+//    printf("person.height : %s\n", person.name);
+//    printf("person.height : %d\n", person.grade);
+//    return 0;
+//}
+//#include <stdio.h>
+//#include <math.h>
+//struct point {
+//    double x;
+//    double y;
+//};
+//int main() {
+//    struct point p1, p2;
+//    double Difference;
+//    printf("두 점의 거리를 구합니다.\n");
+//    printf("(a, b)(c, d)로 입력해주세요. : ");
+//    scanf("%lf %lf", &p1.x, &p1.y);
+//    scanf("%lf %lf", &p2.x, &p2.y);
+//    Difference = sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+//    printf("%lf", Difference);
+//}
+//#include <stdio.h>
+//#include <stdlib.h>
+//struct point {
+//    int x;
+//    int y;
+//};
+//
+//struct rec {
+//    struct point p1, p2;
+//}r1;
+//
+//int check(int a) {
+//    if (a < 0) {
+//        a *= -1;
+//        return a;
+//    } else {
+//        return a;
+//    }
+//}
+//
+//int main() {
+//    int result;
+//    printf("두 점의 좌표를 입력받아 넓이를 출력하시오.\n");
+//    printf("첫번째 점의 좌표 (x y) : ");
+//    scanf("%d %d", &r1.p1.x, &r1.p1.y);
+//    printf("두번째 점의 좌표 (x y) : ");
+//    scanf("%d %d", &r1.p2.x, &r1.p2.y);
+//    result = (r1.p2.x - r1.p1.x) * (r1.p2.x - r1.p1.x);
+//    result = (check(result));
+//    printf("넓이 : %d\n", check(result));
+//}
