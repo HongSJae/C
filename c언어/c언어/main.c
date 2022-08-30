@@ -1,4 +1,4 @@
-//#include <stdio.h>
+#include <stdio.h>
 //
 //int GetMax(int num1, int num2, int num3);
 //int Getmin(int num1, int num2, int num3);
@@ -233,3 +233,16 @@
 //    result = (check(result));
 //    printf("넓이 : %d\n", check(result));
 //}
+
+int Factorial(int num) {
+    if (num == 1) return  1;
+    else return num * Factorial(num - 1);
+    return 0;
+}
+
+int main() {
+    int a;
+
+    scanf("%d", &a);
+    printf("%d\n", Factorial(a));
+}
