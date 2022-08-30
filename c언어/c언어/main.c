@@ -234,15 +234,27 @@
 //    printf("넓이 : %d\n", check(result));
 //}
 
-int Factorial(int num) {
-    if (num == 1) return  1;
-    else return num * Factorial(num - 1);
-    return 0;
+//int Factorial(int num) {
+//    if (num == 1) return  1;
+//    else return num * Factorial(num - 1);
+//    return 0;
+//}
+//
+//int main() {
+//    int a;
+//
+//    scanf("%d", &a);
+//    printf("%d\n", Factorial(a));
+//}
+
+int fibo(int num) {
+    if (num == 1 || num == 2) return  1;
+    else return  fibo(num - 1) + fibo(num - 2);
 }
 
 int main() {
     int a;
 
     scanf("%d", &a);
-    printf("%d\n", Factorial(a));
+    printf("%d\n", fibo(a));
 }
