@@ -259,14 +259,41 @@
 //    printf("%d\n", fibo(a));
 //}
 
+//int hanoi(int n) {
+//    if (n == 1) return 1;
+//    else return 2 * hanoi(n - 1) + 1;
+//}
+//
+//int main() {
+//    int num;
+//    scanf("%d", &num);
+//    printf("%d", hanoi(num));
+//
+//}
+
 int hanoi(int n) {
     if (n == 1) return 1;
     else return 2 * hanoi(n - 1) + 1;
 }
 
+void hanoi_tower(int n, char start, char mid, char end) {
+    if (n == 1) {
+        printf("%d번 원판을 %c 에서 %c 로 옮긴다.\n", n, start, end);
+    } else {
+        hanoi_tower(n - 1 , start, end, mid);
+        printf("%d번 원판을 %c 에서 %c 로 옮긴다.\n", n, start, end);
+        hanoi_tower(n - 1, mid, start, end);
+    }
+}
+
 int main() {
-    int num;
-    scanf("%d", &num);
-    printf("%d", hanoi(num));
+    int a;
+    char start = 'A';
+    char mid = 'B';
+    char end = 'C';
+
+    scanf("%d번 이동", &a);
     
+    printf("%d\n", hanoi(a));
+    hanoi_tower(a, start, mid, end);
 }
