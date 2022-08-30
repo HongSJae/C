@@ -247,14 +247,26 @@
 //    printf("%d\n", Factorial(a));
 //}
 
-int fibo(int num) {
-    if (num == 1 || num == 2) return  1;
-    else return  fibo(num - 1) + fibo(num - 2);
+//int fibo(int num) {
+//    if (num == 1 || num == 2) return  1;
+//    else return  fibo(num - 1) + fibo(num - 2);
+//}
+//
+//int main() {
+//    int a;
+//
+//    scanf("%d", &a);
+//    printf("%d\n", fibo(a));
+//}
+
+int hanoi(int n) {
+    if (n == 1) return 1;
+    else return 2 * hanoi(n - 1) + 1;
 }
 
 int main() {
-    int a;
-
-    scanf("%d", &a);
-    printf("%d\n", fibo(a));
+    int num;
+    scanf("%d", &num);
+    printf("%d", hanoi(num));
+    
 }
