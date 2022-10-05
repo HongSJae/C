@@ -271,29 +271,250 @@
 //
 //}
 
-int hanoi(int n) {
-    if (n == 1) return 1;
-    else return 2 * hanoi(n - 1) + 1;
+//int hanoi(int n) {
+//    if (n == 1) return 1;
+//    else return 2 * hanoi(n - 1) + 1;
+//}
+//
+//void hanoi_tower(int n, char start, char mid, char end) {
+//    if (n == 1) {
+//        printf("%d번 원판을 %c 에서 %c 로 옮긴다.\n", n, start, end);
+//    } else {
+//        hanoi_tower(n - 1 , start, end, mid);
+//        printf("%d번 원판을 %c 에서 %c 로 옮긴다.\n", n, start, end);
+//        hanoi_tower(n - 1, mid, start, end);
+//    }
+//}
+//
+//int main() {
+//    int a;
+//    char start = 'A';
+//    char mid = 'B';
+//    char end = 'C';
+//
+//    scanf("%d번 이동", &a);
+//
+//    printf("%d\n", hanoi(a));
+//    hanoi_tower(a, start, mid, end);
+//}
+//#include<stdio.h>
+//#define MAX_STACK_SIZE 100
+//
+//int stack[MAX_STACK_SIZE];
+//int top = -1;
+//
+////포화상태 확인
+//int is_full(void) {
+//    if (top == MAX_STACK_SIZE - 1) {
+//        return 1;
+//    } else {
+//        return 0;
+//    }
+//}
+//
+////공백상태 확인
+//int is_empty(void) {
+//    if (top == -1) {
+//        return 1;
+//    } else {
+//        return 0;
+//    }
+//}
+//
+//void push(int n) {
+//    // 스택에 새로운 요소를 삽입, 그 전에 스택이 가득 차지 않았는지 검사
+//    if (is_full()) {
+//        printf("error : over_flow\n");
+//    } else {
+//        stack[++top] = n;
+//    }
+//}
+//
+//int pop(void) {
+//    // 스택에 하나의 요소를 제거, 그 전에 스택이 비어있는지 검사
+//    int e;
+//    if (is_empty()) {
+//        printf("error : under_flow\n");
+//        return 0;
+//    } else {
+//        e = stack[top--];
+//        return  e;
+//    }
+//}
+//
+//int main() {
+//    push(1);
+//    push(2);
+//    push(3);
+//    printf("%d\n", pop());
+//    printf("%d\n", pop());
+//    printf("%d\n", pop());
+//
+//    return 0;
+//}
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define MAX_SIZE 10
+#define SWAP(x,y,t) ((t)=(x), (x)=(y), (y)=(t))
+
+int arr[MAX_SIZE];
+
+int bubbleSort(void);
+int selectionSort(void);
+int insertSort(void);
+int QuickSort(int left, int right);
+int partition(int left, int right);
+int onlyQuickSort(int left, int right);
+
+void prnSrc(void) {
+    int i;
+    printf("Src : ");
+    for (i = 0; i<MAX_SIZE; i++) {
+        printf("%4d", arr[i]);
+    }
+    printf("\n---------------\n");
 }
 
-void hanoi_tower(int n, char start, char mid, char end) {
-    if (n == 1) {
-        printf("%d번 원판을 %c 에서 %c 로 옮긴다.\n", n, start, end);
-    } else {
-        hanoi_tower(n - 1 , start, end, mid);
-        printf("%d번 원판을 %c 에서 %c 로 옮긴다.\n", n, start, end);
-        hanoi_tower(n - 1, mid, start, end);
+void prnRst(void) {
+    int i;
+    for (i = 0; i<MAX_SIZE; i++) {
+        printf("%4d", arr[i]);
     }
+    printf("\n\n");
 }
 
 int main() {
-    int a;
-    char start = 'A';
-    char mid = 'B';
-    char end = 'C';
+    int choice;
+    srand(time(NULL));
+    int i;
+    int again = 0;
+    do {
+        for (i = 0; i<MAX_SIZE; i++) {
+            arr[i] = rand() % 100;
+        }
+        prnSrc();
+        printf("종료: 0, 선택: 1, 버블: 2, 삽입: 3, 퀵: 4, New Quick: 5 \n정렬을 선택하세요 : ");
+        scanf("%d", &choice);
+        switch(choice) {
+            case 1:
+                selectionSort();
+                break;
+            case 2:
+                bubbleSort();
+                break;
+            case 3:
+                insertSort();
+                break;
+            case 4:
+                QuickSort(0, MAX_SIZE - 1);
+                break;
+            case  5:
+                onlyQuickSort(0, MAX_SIZE - 1);
+                break;
+            default:
+                printf("정렬 선택이 잘못 되었습니다.\n");
+        }
+        printf("계속 하실려유? : 0 or 1\n : ");
+        scanf("%d", &again);
+    } while (again);
+    return 0;
+}
 
-    scanf("%d번 이동", &a);
-    
-    printf("%d\n", hanoi(a));
-    hanoi_tower(a, start, mid, end);
+int bubbleSort() {
+    int temp;
+    for (int i = MAX_SIZE-1; i >=1 ; i--) { // 총 단계는 배열 사이즈-1 수행됨
+        for (int j = 0; j <= i-1; j++) { // 뒤에서부터 거품처럼 정렬되는 구조
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+            prnRst();
+        }
+    }
+    return 0;
+}
+
+int selectionSort() {
+    int least, tmp;
+    for(int i=0; i<MAX_SIZE-1; i++){   // n-1단계 수행되도록 반복횟수 설정
+        least = i;
+        for(int j=i+1; j<MAX_SIZE; j++){    // 각 단계에 맞는 최소값의 인덱스 찾기
+            if(arr[least] > arr[j])
+                least = j;
+        }
+        tmp = arr[i];         // 값 교환(제 자리 위치에 최소값 넣기)
+        arr[i] = arr[least];
+        arr[least] = tmp;
+        prnRst();
+    }
+    return 0;
+}
+
+int insertSort() {
+    int key, i, j;
+    for (i = 1; i < MAX_SIZE; i++) { // i가 1부터 시작하는 것에 유의
+        key = arr[i];
+        for (j = i - 1; j >= 0 && arr[j] > key; j--) // key 값의 위치 찾기
+            arr[j + 1] = arr[j];
+        arr[j + 1] = key; // key 값 삽입
+        prnRst();
+    }
+    return 0;
+}
+
+int QuickSort(int left, int right) {
+    // left는 정렬해야 할 배열의 첫 인덱스 값, right는 마지막 인덱스 값
+    if (left < right) {
+        int q = partition(left, right); // partition함수는 피봇의 위치(인덱스)를 반환
+        QuickSort(left, q - 1);
+        QuickSort(q + 1, right); // 오른쪽 리스트 매개변수는?
+    }
+    return 0;
+}
+
+int partition(int left, int right) {
+    int pivot = arr[left];
+    int low = left + 1;
+    int high = right;
+    int temp;
+    do {
+        while (arr[low] < pivot) {
+            low++;
+        }
+        while (arr[high] > pivot) {
+            high--;
+        }
+        if (low < high) {
+            // 값 교환
+            temp = arr[low];
+            arr[low] = arr[high];
+            arr[high] = temp;
+        }
+    } while (low < high);
+
+    // 값 교환(어떤 값들을 바꿔줘야할까요?)
+//    temp = arr[left];
+    arr[left] = arr[high];
+    arr[high] = pivot;
+    prnRst();
+    return high;
+}
+
+int onlyQuickSort(int left, int right) {
+    if (left < right) {
+        int temp, pivot = arr[left];
+        int L = left + 1, R = right;
+        while (L <= R) {
+            while (arr[L] < pivot) L++;
+            while (arr[R] > pivot) R--;
+            if (L < R) SWAP(arr[L], arr[R], temp);
+        }
+        SWAP(arr[left], arr[R], temp);
+        prnRst();
+        if (left < R) onlyQuickSort(left, R - 1);
+        if (L < right) onlyQuickSort(L, right);
+    }
+    return 0;
 }
