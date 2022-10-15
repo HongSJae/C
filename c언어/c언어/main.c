@@ -519,70 +519,177 @@
 //    }
 //    return 0;
 //}
+//#include<stdio.h>
+//#define MAX_STACK_SIZE 100
+//
+//struct StackType{
+//    int data[MAX_STACK_SIZE];
+//    int top;
+//};
+//
+//// 스택 초기화 함수
+//void init_stack(struct StackType *p)
+//{
+//    p->top = -1;
+//}
+//
+//// 공백 상태 검출 함수
+//int is_empty(struct StackType *p)
+//{
+//    // 공백 검출
+//    return (p -> top == -1) ? 1 : 0;
+//}
+//// 포화 상태 검출 함수
+//int is_full(struct StackType *p)
+//{
+//    // 포화 상태 검출
+//    return (p -> top == MAX_STACK_SIZE - 1) ? 1 : 0;
+//}
+//// 삽입함수
+//void push(struct StackType *p, int item)
+//{
+//    // 삽입함수
+//    if (is_full(p)) {
+//        printf("error : over_flow\n");
+//    } else {
+//        p -> data[++p -> top] = item;
+//    }
+//}
+//// 삭제함수
+//int pop(struct StackType *p)
+//{
+//    // 삭제함수
+//    int e;
+//    if (is_empty(p)) {
+//        printf("error : under_flow\n");
+//        return 0;
+//    } else {
+//        e = p -> data[p -> top--];
+//        return  e;
+//    }
+//}
+//int main(void)
+//{
+//    struct StackType s;  // 스택을 정적으로 생성
+//
+//    init_stack(&s);   // 함수를 호출할 때 매개변수로 스택의 주소를 전달
+//    push(&s, 1);
+//    push(&s, 2);
+//    push(&s, 3);
+//    push(&s, 4);
+//    push(&s, 5);
+//    push(&s, 6);
+//    printf("%d\n", pop(&s));
+//    printf("%d\n", pop(&s));
+//    printf("%d\n", pop(&s));
+//    printf("%d\n", pop(&s));
+//    printf("%d\n", pop(&s));
+//}
+//
 #include<stdio.h>
+#include<string.h>
 #define MAX_STACK_SIZE 100
 
-struct StackType{
-    int data[MAX_STACK_SIZE];
-    int top;
+struct stacks {
+    char stack[MAX_STACK_SIZE];
+    char top;
 };
 
-// 스택 초기화 함수
-void init_stack(struct StackType *p)
-{
+void init_stack(struct stacks *p) {
     p->top = -1;
 }
 
+//스택과 관련된 함수 모두 작성
 // 공백 상태 검출 함수
-int is_empty(struct StackType *p)
-{
+int is_empty(struct stacks *p) {
     // 공백 검출
     return (p -> top == -1) ? 1 : 0;
 }
 // 포화 상태 검출 함수
-int is_full(struct StackType *p)
-{
+int is_full(struct stacks *p) {
     // 포화 상태 검출
-    return (p -> top == MAX_STACK_SIZE - 1) ? 1 : 0;
+    return p -> top == MAX_STACK_SIZE - 1 ? 1 : 0;
 }
 // 삽입함수
-void push(struct StackType *p, int item)
-{
+void push(struct stacks *p, char item) {
     // 삽입함수
     if (is_full(p)) {
         printf("error : over_flow\n");
     } else {
-        p -> data[++p -> top] = item;
+        p -> stack[++p -> top] = item;
     }
 }
 // 삭제함수
-int pop(struct StackType *p)
-{
+char pop(struct stacks *p) {
     // 삭제함수
     int e;
     if (is_empty(p)) {
         printf("error : under_flow\n");
         return 0;
     } else {
-        e = p -> data[p -> top--];
+        e = p -> stack[p -> top--];
         return  e;
     }
 }
-int main(void)
-{
-    struct StackType s;  // 스택을 정적으로 생성
+//연산자 우선순위 결정하는 함수
+int rank(char c) {
+    if (c == '(' || c == ')')
+        return 0;
+    else if (c == '+' || c == '-')
+        return 1;
+    else if (c == '*' || c == '/')
+        return 2;
+    else return -1;
+}
 
-    init_stack(&s);   // 함수를 호출할 때 매개변수로 스택의 주소를 전달
-    push(&s, 1);
-    push(&s, 2);
-    push(&s, 3);
-    push(&s, 4);
-    push(&s, 5);
-    push(&s, 6);
-    printf("%d\n", pop(&s));
-    printf("%d\n", pop(&s));
-    printf("%d\n", pop(&s));
-    printf("%d\n", pop(&s));
-    printf("%d\n", pop(&s));
-    printf("%d\n", pop(&s));
+char peek(struct stacks* s) {
+    if (is_empty(s)) {
+        printf("error");
+        return 'E';
+    }
+    else return s->stack[s->top];
+}
+
+//전위 -> 후위
+void infix_to_postfix(char* s) {
+    struct stacks st;
+    char ch;
+    int length = strlen(s);
+    init_stack(&st);
+    for (int i = 0; i < length; i++) {
+        ch = s[i];
+        //연산자일때
+        if (rank(ch) >= 1) {
+            if (rank(peek(&st)) >= rank(ch)) {
+                pop(&st);
+            }
+        }
+        //왼쪽 괄호일때 (
+        else if (ch == '(') {
+            push(&st, ch);
+        }
+        //오른쪽 괄호일때 )
+        else if (ch == ')') {
+            while (peek(&st) == '(') {
+                pop(&st);
+            }
+        }
+        //나머지(피연산자일때)
+        else {
+            printf("%c", ch);
+        }
+    }
+
+    //스택에 남아있는 것들 모두 출력
+    while (!is_empty(&st)) {
+        pop(&st);
+    }
+}
+
+int main() {
+    char* s = "(2+3)*4+9";
+    printf("중위표기수식 %s\n", s);
+    printf("후위표기수식 ");
+    infix_to_postfix(s);
+    return 0;
 }
