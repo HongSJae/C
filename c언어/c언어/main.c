@@ -633,20 +633,20 @@ char pop(struct stacks *p) {
 }
 //연산자 우선순위 결정하는 함수
 int rank(char c) {
-    if (c == '(' || c == ')')
+    if (c == '(' ||
+        c == ')')
         return 0;
-    else if (c == '+' || c == '-')
+    else if (c == '+' ||
+             c == '-')
         return 1;
-    else if (c == '*' || c == '/')
+    else if (c == '*' ||
+             c == '/')
         return 2;
     else return -1;
 }
 
 char peek(struct stacks* s) {
-    if (is_empty(s)) {
-        printf("error");
-        return 'E';
-    }
+    if (is_empty(s)) return 'E';
     else return s->stack[s->top];
 }
 
@@ -660,9 +660,10 @@ void infix_to_postfix(char* s) {
         ch = s[i];
         //연산자일때
         if (rank(ch) >= 1) {
-            if (rank(peek(&st)) >= rank(ch)) {
-                pop(&st);
+            while (rank(peek(&st)) >= rank(ch)) {
+                printf("%c", pop(&st));
             }
+            push(&st, ch);
         }
         //왼쪽 괄호일때 (
         else if (ch == '(') {
@@ -670,8 +671,8 @@ void infix_to_postfix(char* s) {
         }
         //오른쪽 괄호일때 )
         else if (ch == ')') {
-            while (peek(&st) == '(') {
-                pop(&st);
+            while (peek(&st) != '(') {
+                printf("%c", pop(&st));
             }
         }
         //나머지(피연산자일때)
@@ -682,7 +683,7 @@ void infix_to_postfix(char* s) {
 
     //스택에 남아있는 것들 모두 출력
     while (!is_empty(&st)) {
-        pop(&st);
+        printf("%c", pop(&st));
     }
 }
 
