@@ -784,47 +784,74 @@
 //    printf("bool의 크기 : %lu \nint의 크기 : %lu\n", sizeof(bool), sizeof(int));
 //}
 
-//// MARK: - 슬림한 자료구조
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <stdbool.h>
+// MARK: - 슬림한 자료구조
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+#define MAX_STACK_SIZE 100
+#define MAX_STRING 100
+
+int top = -1;
+typedef struct {
+    int student_no;
+    char name[MAX_STRING];
+    char address[MAX_STRING];
+} element;
+element stack[MAX_STACK_SIZE];
+
+bool is_empty(void) {
+    return (top == -1);
+}
+bool is_full(void) {
+    return (top == MAX_STACK_SIZE - 1);
+}
+void push(element item) {
+    if (is_full()) {
+        printf("스택 포화 에러\n");
+        return;
+    } else stack[++top] = item;
+}
+element pop(void) {
+    if (is_empty()) {
+        printf("스택 공백 에러\n");
+        exit(1);
+    } else return stack[top--];
+}
+element peek(void) {
+    if (is_empty()) {
+        printf("스택 공백 에러\n");
+        exit(1);
+    } else return stack[top];
+}
+
+int main(void) {
+//    element ie = { 20060304, "Hong", "Daejeon"};
+//    element oe;
 //
-//#define MAX_STACK_SIZE 100
-//typedef int element;
-//element stack[MAX_STACK_SIZE];
-//int top = -1;
+//    push(ie);
+//    oe = pop();
 //
-//bool is_empty(void) {
-//    return (top == -1);
-//}
-//bool is_full(void) {
-//    return (top == MAX_STACK_SIZE - 1);
-//}
-//void push(element item) {
-//    if (is_full()) {
-//        printf("스택 포화 에러\n");
-//        return;
-//    } else stack[++top] = item;
-//}
-//element pop(void) {
-//    if (is_empty()) {
-//        printf("스택 공백 에러\n");
-//        exit(1);
-//    } else return stack[top--];
-//}
-//element peek(void) {
-//    if (is_empty()) {
-//        printf("스택 공백 에러\n");
-//        exit(1);
-//    } else return stack[top];
-//}
-//
-//int main(void) {
-//    int i;
-//    for (i = 1; i <= 3; i++) {
-//        push(i);
-//        printf("top: %d, 입력값: %d \n", top, i);
-//    }
-//    for (i = 1; i <= 5; i++) printf("%d번째 pop : %d, top: %d\n", i, pop(), top);
-//    return 0;
-//}
+//    printf("학번 : %d\n", oe.student_no);
+//    printf("이름 : %s\n", oe.name);
+//    printf("주소 : %s\n", oe.address);
+    int repeadedTime;
+    element ie, oe;
+    printf("몇 명 적으실래요? : ");
+    scanf("%d", &repeadedTime);
+    for (int i = 0; i < repeadedTime; i++) {
+        printf("학번을 적어주세요 : ");
+        scanf("%d", &ie.student_no);
+        printf("이름을 적어주세요 : ");
+        scanf("%s", ie.name);
+        printf("주소를 적어주세요 : ");
+        scanf("%s", ie.address);
+        printf("\n");
+        push(ie);
+    }
+    oe = pop();
+    
+    printf("학번 : %d\n", oe.student_no);
+    printf("이름 : %s\n", oe.name);
+    printf("주소 : %s\n", oe.address);
+}
