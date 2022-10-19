@@ -785,73 +785,122 @@
 //}
 
 // MARK: - 슬림한 자료구조
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
-#define MAX_STACK_SIZE 100
-#define MAX_STRING 100
-
-int top = -1;
-typedef struct {
-    int student_no;
-    char name[MAX_STRING];
-    char address[MAX_STRING];
-} element;
-element stack[MAX_STACK_SIZE];
-
-bool is_empty(void) {
-    return (top == -1);
-}
-bool is_full(void) {
-    return (top == MAX_STACK_SIZE - 1);
-}
-void push(element item) {
-    if (is_full()) {
-        printf("스택 포화 에러\n");
-        return;
-    } else stack[++top] = item;
-}
-element pop(void) {
-    if (is_empty()) {
-        printf("스택 공백 에러\n");
-        exit(1);
-    } else return stack[top--];
-}
-element peek(void) {
-    if (is_empty()) {
-        printf("스택 공백 에러\n");
-        exit(1);
-    } else return stack[top];
-}
-
-int main(void) {
-//    element ie = { 20060304, "Hong", "Daejeon"};
-//    element oe;
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <stdbool.h>
 //
-//    push(ie);
+//#define MAX_STACK_SIZE 100
+//#define MAX_STRING 100
+//
+//int top = -1;
+//typedef struct {
+//    int student_no;
+//    char name[MAX_STRING];
+//    char address[MAX_STRING];
+//} element;
+//element stack[MAX_STACK_SIZE];
+//
+//bool is_empty(void) {
+//    return (top == -1);
+//}
+//bool is_full(void) {
+//    return (top == MAX_STACK_SIZE - 1);
+//}
+//void push(element item) {
+//    if (is_full()) {
+//        printf("스택 포화 에러\n");
+//        return;
+//    } else stack[++top] = item;
+//}
+//element pop(void) {
+//    if (is_empty()) {
+//        printf("스택 공백 에러\n");
+//        exit(1);
+//    } else return stack[top--];
+//}
+//element peek(void) {
+//    if (is_empty()) {
+//        printf("스택 공백 에러\n");
+//        exit(1);
+//    } else return stack[top];
+//}
+
+//int main(void) {
+////    element ie = { 20060304, "Hong", "Daejeon"};
+////    element oe;
+////
+////    push(ie);
+////    oe = pop();
+////
+////    printf("학번 : %d\n", oe.student_no);
+////    printf("이름 : %s\n", oe.name);
+////    printf("주소 : %s\n", oe.address);
+//    int repeadedTime;
+//    element ie, oe;
+//    printf("몇 명 적으실래요? : ");
+//    scanf("%d", &repeadedTime);
+//    for (int i = 0; i < repeadedTime; i++) {
+//        printf("학번을 적어주세요 : ");
+//        scanf("%d", &ie.student_no);
+//        printf("이름을 적어주세요 : ");
+//        scanf("%s", ie.name);
+//        printf("주소를 적어주세요 : ");
+//        scanf("%s", ie.address);
+//        printf("\n");
+//        push(ie);
+//    }
 //    oe = pop();
 //
 //    printf("학번 : %d\n", oe.student_no);
 //    printf("이름 : %s\n", oe.name);
 //    printf("주소 : %s\n", oe.address);
-    int repeadedTime;
-    element ie, oe;
-    printf("몇 명 적으실래요? : ");
-    scanf("%d", &repeadedTime);
-    for (int i = 0; i < repeadedTime; i++) {
-        printf("학번을 적어주세요 : ");
-        scanf("%d", &ie.student_no);
-        printf("이름을 적어주세요 : ");
-        scanf("%s", ie.name);
-        printf("주소를 적어주세요 : ");
-        scanf("%s", ie.address);
-        printf("\n");
-        push(ie);
-    }
-    oe = pop();
+//}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+#define MAX_STACK_SIZE 100
+
+typedef struct {
+    int data[MAX_STACK_SIZE];
+    int top;
+} StackType;
+StackType stack[MAX_STACK_SIZE];
+
+bool is_empty(StackType *s) {
+    return (s -> top == -1);
+}
+bool is_full(StackType *s) {
+    return (s -> top == MAX_STACK_SIZE - 1);
+}
+void push(StackType item) {
+    if (is_full()) {
+        printf("스택 포화 에러\n");
+        return;
+    } else stack[++top] = item;
+}
+StackType pop(void) {
+    if (is_empty()) {
+        printf("스택 공백 에러\n");
+        exit(1);
+    } else return stack[top--];
+}
+StackType peek(void) {
+    if (is_empty()) {
+        printf("스택 공백 에러\n");
+        exit(1);
+    } else return stack[top];
+}
+void init_stack(StackType *s) {
+    s -> top = -1;
+}
+
+int eval(char exp[]) {
+    int op1, op2, value, i = 0;
+    unsigned long len = strlen(exp);
+    char ch;
+    StackType s;
     
-    printf("학번 : %d\n", oe.student_no);
-    printf("이름 : %s\n", oe.name);
-    printf("주소 : %s\n", oe.address);
+    
 }
