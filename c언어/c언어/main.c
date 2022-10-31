@@ -1159,22 +1159,20 @@ typedef struct {
 } QueueType;
 
 void init_queue(QueueType *q) {
-    q->rear = q->front = -1;
+    q->rear = q->front = 0;
 }
 void queue_print(QueueType *q) {
     int i;
     printf("| ");
     
-    for (i = 0; i < MAX_QUEUE_SIZE; i++) {
+    for (i = 0; i < MAX_QUEUE_SIZE; i = (i + 1) % MAX_QUEUE_SIZE) {
         if (i <= q->rear && i > q->front)
             printf("%d | ", q->data[i]);
-        else
-            printf("  | ");
     }
     printf("\n");
 }
 bool is_full(QueueType *q) {
-    return q->rear == MAX_QUEUE_SIZE - 1 ? true : false;
+    return (q->rear + 1) % MAX_QUEUE_SIZE == q->front;
 }
 bool is_empty(QueueType *q) {
     return q->rear == q->front;
@@ -1182,16 +1180,20 @@ bool is_empty(QueueType *q) {
 void enqueue(QueueType *q, element item) {
     if (is_full(q)) {
         printf("큐가 포화 상태입니다. rear: %d\n", q->rear);
-        return;
     }
-    q->data[++(q->rear)] = item;
+    else {
+        q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
+        q->data[q->rear] = item;
+    }
 }
 element dequeue(QueueType *q) {
     if(is_empty(q)) {
         printf("큐가 공백상태입니다.\n");
         exit(1);
+    } else {
+        q->front = (q->front + 1) % MAX_QUEUE_SIZE;
+        return q->data[q->front];
     }
-    return q->data[++(q->front)];
 }
 int main(void) {
     element item;
