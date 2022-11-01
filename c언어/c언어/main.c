@@ -1146,69 +1146,151 @@
 //    return 0;
 //}
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#define MAX_QUEUE_SIZE 5
-
-typedef int element;
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <stdbool.h>
+//#define MAX_QUEUE_SIZE 5
+//
+//typedef int element;
+//
+//typedef struct {
+//    int front, rear;
+//    element data[MAX_QUEUE_SIZE];
+//} QueueType;
+//
+//void init_queue(QueueType *q) {
+//    q->rear = q->front = 0;
+//}
+//void queue_print(QueueType *q) {
+//    int i;
+//    printf("| ");
+//
+//    for (i = 0; i < MAX_QUEUE_SIZE; i = (i + 1) % MAX_QUEUE_SIZE) {
+//        if (i <= q->rear && i > q->front)
+//            printf("%d | ", q->data[i]);
+//    }
+//    printf("\n");
+//}
+//bool is_full(QueueType *q) {
+//    return (q->rear + 1) % MAX_QUEUE_SIZE == q->front;
+//}
+//bool is_empty(QueueType *q) {
+//    return q->rear == q->front;
+//}
+//void enqueue(QueueType *q, element item) {
+//    if (is_full(q)) {
+//        printf("큐가 포화 상태입니다. rear: %d\n", q->rear);
+//    }
+//    else {
+//        q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
+//        q->data[q->rear] = item;
+//    }
+//}
+//element dequeue(QueueType *q) {
+//    if(is_empty(q)) {
+//        printf("큐가 공백상태입니다.\n");
+//        exit(1);
+//    } else {
+//        q->front = (q->front + 1) % MAX_QUEUE_SIZE;
+//        return q->data[q->front];
+//    }
+//}
+//int main(void) {
+//    element item;
+//    QueueType q;
+//    init_queue(&q);
+//
+//    int i;
+//    for (i = 0; i <= MAX_QUEUE_SIZE; i++) {
+//        enqueue(&q, i + 1);
+//        queue_print(&q);
+//    }
+//    for (i = 0; i <= MAX_QUEUE_SIZE; i++) {
+//        item = dequeue(&q);
+////        printf("dequeue item %d\n", item);
+//        queue_print(&q);
+//    }
+//    return 0;
+//}
+#include<stdio.h>
+#define MAX_LIST_SIZE 100 // 리스트의 최대크기
 
 typedef struct {
-    int front, rear;
-    element data[MAX_QUEUE_SIZE];
-} QueueType;
+    int array[MAX_LIST_SIZE]; // 배열 정의
+    int size; // 현재 리스트에 저장된 항목들의 개수
+} ArrayListType;
 
-void init_queue(QueueType *q) {
-    q->rear = q->front = 0;
+// 리스트 초기화 함수
+void init(ArrayListType* L)
+{
+    L->size = 0;
 }
-void queue_print(QueueType *q) {
+// 리스트가 비어 있으면 1을 반환
+// 그렇지 않으면 0을 반환
+int is_empty(ArrayListType* L)
+{
+    return L->size == 0;
+}
+// 리스트가 가득 차 있으면 1을 반환
+// 그렇지 않으면 0을 반환
+int is_full(ArrayListType* L)
+{
+    return L->size == MAX_LIST_SIZE; // 왜 MAX_LIST_SIZE -1이 아닐까?
+}
+// 리스트 출력
+void print_list(ArrayListType* L)
+{
     int i;
-    printf("| ");
-    
-    for (i = 0; i < MAX_QUEUE_SIZE; i = (i + 1) % MAX_QUEUE_SIZE) {
-        if (i <= q->rear && i > q->front)
-            printf("%d | ", q->data[i]);
+    for (i = 0; i < L->size; i++) {
+        printf("%d->", L->array[i]);
     }
     printf("\n");
 }
-bool is_full(QueueType *q) {
-    return (q->rear + 1) % MAX_QUEUE_SIZE == q->front;
-}
-bool is_empty(QueueType *q) {
-    return q->rear == q->front;
-}
-void enqueue(QueueType *q, element item) {
-    if (is_full(q)) {
-        printf("큐가 포화 상태입니다. rear: %d\n", q->rear);
+void insert_last(ArrayListType* L, int item)
+{
+    if (is_full(L) == 1) {
+        printf("리스트 오버플로우");
+        return;
     }
-    else {
-        q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
-        q->data[q->rear] = item;
-    }
+    L->array[L->size++] = item;
 }
-element dequeue(QueueType *q) {
-    if(is_empty(q)) {
-        printf("큐가 공백상태입니다.\n");
-        exit(1);
-    } else {
-        q->front = (q->front + 1) % MAX_QUEUE_SIZE;
-        return q->data[q->front];
+void insert(ArrayListType* L, int pos, int item)
+{
+    if (!is_full(L) && (pos >= 0) && (pos <= L->size)) {
+        for (int i = (L->size - 1); i >= pos; i--)
+            L->array[i+1] = L->array[i];
+        L->array[pos] = item;
+        L->size++;
     }
 }
-int main(void) {
-    element item;
-    QueueType q;
-    init_queue(&q);
-    
-    int i;
-    for (i = 0; i <= MAX_QUEUE_SIZE; i++) {
-        enqueue(&q, i + 1);
-        queue_print(&q);
+int delete(ArrayListType* L, int pos)
+{
+    int item;
+    if ((is_empty(L) == 1 && pos < 0) || pos >= L->size) {
+        printf("오류");
+        return -1;
     }
-    for (i = 0; i <= MAX_QUEUE_SIZE; i++) {
-        item = dequeue(&q);
-//        printf("dequeue item %d\n", item);
-        queue_print(&q);
-    }
+    item = L->array[pos];
+    for (int i = pos; i < (L->size - 1); i++)
+        L->array[i] = L->array[i+1];
+    L->size--;
+    return item;
+}
+
+int main(void)
+{
+    ArrayListType list;
+
+    init(&list);
+    insert(&list, 0, 30);    // 0번째 위치에 30 추가
+    print_list(&list);
+    insert(&list, 0, 10);    // 0번째 위치에 10 추가
+    print_list(&list);
+    insert(&list, 1, 20);    // 1번째 위치에 20 추가
+    print_list(&list);
+    insert_last(&list, 40);    // 맨 끝에 40 추가
+    print_list(&list);
+    delete(&list, 0);        // 0번째 항목 삭제
+    print_list(&list);
     return 0;
 }
