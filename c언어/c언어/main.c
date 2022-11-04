@@ -1212,85 +1212,151 @@
 //    }
 //    return 0;
 //}
+//#include<stdio.h>
+//#define MAX_LIST_SIZE 100 // 리스트의 최대크기
+//
+//typedef struct {
+//    int array[MAX_LIST_SIZE]; // 배열 정의
+//    int size; // 현재 리스트에 저장된 항목들의 개수
+//} ArrayListType;
+//
+//// 리스트 초기화 함수
+//void init(ArrayListType* L)
+//{
+//    L->size = 0;
+//}
+//// 리스트가 비어 있으면 1을 반환
+//// 그렇지 않으면 0을 반환
+//int is_empty(ArrayListType* L)
+//{
+//    return L->size == 0;
+//}
+//// 리스트가 가득 차 있으면 1을 반환
+//// 그렇지 않으면 0을 반환
+//int is_full(ArrayListType* L)
+//{
+//    return L->size == MAX_LIST_SIZE; // 왜 MAX_LIST_SIZE -1이 아닐까?
+//}
+//// 리스트 출력
+//void print_list(ArrayListType* L)
+//{
+//    int i;
+//    for (i = 0; i < L->size; i++) {
+//        printf("%d->", L->array[i]);
+//    }
+//    printf("\n");
+//}
+//void insert_last(ArrayListType* L, int item)
+//{
+//    if (is_full(L) == 1) {
+//        printf("리스트 오버플로우");
+//        return;
+//    }
+//    L->array[L->size++] = item;
+//}
+//void insert(ArrayListType* L, int pos, int item)
+//{
+//    if (!is_full(L) && (pos >= 0) && (pos <= L->size)) {
+//        for (int i = (L->size - 1); i >= pos; i--)
+//            L->array[i+1] = L->array[i];
+//        L->array[pos] = item;
+//        L->size++;
+//    }
+//}
+//int delete(ArrayListType* L, int pos)
+//{
+//    int item;
+//    if ((is_empty(L) == 1 && pos < 0) || pos >= L->size) {
+//        printf("오류");
+//        return -1;
+//    }
+//    item = L->array[pos];
+//    for (int i = pos; i < (L->size - 1); i++)
+//        L->array[i] = L->array[i+1];
+//    L->size--;
+//    return item;
+//}
+//
+//int main(void)
+//{
+//    ArrayListType list;
+//
+//    init(&list);
+//    insert(&list, 0, 30);    // 0번째 위치에 30 추가
+//    print_list(&list);
+//    insert(&list, 0, 10);    // 0번째 위치에 10 추가
+//    print_list(&list);
+//    insert(&list, 1, 20);    // 1번째 위치에 20 추가
+//    print_list(&list);
+//    insert_last(&list, 40);    // 맨 끝에 40 추가
+//    print_list(&list);
+//    delete(&list, 0);        // 0번째 항목 삭제
+//    print_list(&list);
+//    return 0;
+//}
 #include<stdio.h>
-#define MAX_LIST_SIZE 100 // 리스트의 최대크기
+#include<stdlib.h>
 
-typedef struct {
-    int array[MAX_LIST_SIZE]; // 배열 정의
-    int size; // 현재 리스트에 저장된 항목들의 개수
-} ArrayListType;
+typedef struct ListNode {     // 노드 타입을 구조체로 정의한다.
+    int data;
+    struct ListNode* link;
+} ListNode;
 
-// 리스트 초기화 함수
-void init(ArrayListType* L)
-{
-    L->size = 0;
-}
-// 리스트가 비어 있으면 1을 반환
-// 그렇지 않으면 0을 반환
-int is_empty(ArrayListType* L)
-{
-    return L->size == 0;
-}
-// 리스트가 가득 차 있으면 1을 반환
-// 그렇지 않으면 0을 반환
-int is_full(ArrayListType* L)
-{
-    return L->size == MAX_LIST_SIZE; // 왜 MAX_LIST_SIZE -1이 아닐까?
-}
-// 리스트 출력
-void print_list(ArrayListType* L)
-{
-    int i;
-    for (i = 0; i < L->size; i++) {
-        printf("%d->", L->array[i]);
-    }
-    printf("\n");
-}
-void insert_last(ArrayListType* L, int item)
-{
-    if (is_full(L) == 1) {
-        printf("리스트 오버플로우");
-        return;
-    }
-    L->array[L->size++] = item;
-}
-void insert(ArrayListType* L, int pos, int item)
-{
-    if (!is_full(L) && (pos >= 0) && (pos <= L->size)) {
-        for (int i = (L->size - 1); i >= pos; i--)
-            L->array[i+1] = L->array[i];
-        L->array[pos] = item;
-        L->size++;
-    }
-}
-int delete(ArrayListType* L, int pos)
-{
-    int item;
-    if ((is_empty(L) == 1 && pos < 0) || pos >= L->size) {
-        printf("오류");
-        return -1;
-    }
-    item = L->array[pos];
-    for (int i = pos; i < (L->size - 1); i++)
-        L->array[i] = L->array[i+1];
-    L->size--;
-    return item;
+ListNode* insert_first(ListNode* head, int value) {
+    ListNode* p;
+    p = malloc(sizeof(ListNode));
+    p->data = value;
+    p->link = head;
+    head = p;
+    return head;
 }
 
-int main(void)
-{
-    ArrayListType list;
+// 노드 pre 뒤에 새로운 노드 삽입
+ListNode* insert(ListNode* head, ListNode* pre, int value) {
+    ListNode* p;
+    p = malloc(sizeof(ListNode));
+    p->data = value;
+    p->link = head->link;
+    pre->link = p;
+    return head;
+}
 
-    init(&list);
-    insert(&list, 0, 30);    // 0번째 위치에 30 추가
-    print_list(&list);
-    insert(&list, 0, 10);    // 0번째 위치에 10 추가
-    print_list(&list);
-    insert(&list, 1, 20);    // 1번째 위치에 20 추가
-    print_list(&list);
-    insert_last(&list, 40);    // 맨 끝에 40 추가
-    print_list(&list);
-    delete(&list, 0);        // 0번째 항목 삭제
-    print_list(&list);
+ListNode* delete_first(ListNode* head) {
+    ListNode* removed;
+    if(head == NULL) return NULL;
+    removed = head;
+    head = head->link;
+    free(removed);
+    return head;
+}
+
+// pre가 가리키는 노드의 다음 노드를 삭제한다.
+ListNode* delete(ListNode* head, ListNode* pre) {
+    ListNode* removed = head;
+    head = head->link;
+    free(pre->link);
+    pre->link = pre->link->link;
+    return head;
+}
+
+void print_list(ListNode *head) {
+    for (ListNode *p = head; p != NULL; p = p->link)
+        printf("%d->", p->data);
+    printf("NULL \n");
+}
+
+int main() {
+    ListNode* head = NULL;
+
+    for (int i = 5; i >= 1; i--) {
+        head = insert_first(head, i*10);
+        print_list(head);
+    }
+    
+    for (int i = 1; i <= 2; i++) {
+        head = delete_first(head);
+        print_list(head);
+    }
+    
     return 0;
 }
