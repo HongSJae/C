@@ -1294,69 +1294,69 @@
 //    print_list(&list);
 //    return 0;
 //}
-#include<stdio.h>
-#include<stdlib.h>
-
-typedef struct ListNode {     // 노드 타입을 구조체로 정의한다.
-    int data;
-    struct ListNode* link;
-} ListNode;
-
-ListNode* insert_first(ListNode* head, int value) {
-    ListNode* p;
-    p = malloc(sizeof(ListNode));
-    p->data = value;
-    p->link = head;
-    head = p;
-    return head;
-}
-
-// 노드 pre 뒤에 새로운 노드 삽입
-ListNode* insert(ListNode* head, ListNode* pre, int value) {
-    ListNode* p;
-    p = malloc(sizeof(ListNode));
-    p->data = value;
-    p->link = head->link;
-    pre->link = p;
-    return head;
-}
-
-ListNode* delete_first(ListNode* head) {
-    ListNode* removed;
-    if(head == NULL) return NULL;
-    removed = head;
-    head = head->link;
-    free(removed);
-    return head;
-}
-
-// pre가 가리키는 노드의 다음 노드를 삭제한다.
-ListNode* delete(ListNode* head, ListNode* pre) {
-    ListNode* removed = head;
-    head = head->link;
-    free(pre->link);
-    pre->link = pre->link->link;
-    return head;
-}
-
-void print_list(ListNode *head) {
-    for (ListNode *p = head; p != NULL; p = p->link)
-        printf("%d->", p->data);
-    printf("NULL \n");
-}
-
-int main() {
-    ListNode* head = NULL;
-
-    for (int i = 5; i >= 1; i--) {
-        head = insert_first(head, i*10);
-        print_list(head);
-    }
-    
-    for (int i = 1; i <= 2; i++) {
-        head = delete_first(head);
-        print_list(head);
-    }
-    
-    return 0;
-}
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//typedef struct ListNode {     // 노드 타입을 구조체로 정의한다.
+//    int data;
+//    struct ListNode* link;
+//} ListNode;
+//
+//ListNode* insert_first(ListNode* head, int value) {
+//    ListNode* p;
+//    p = malloc(sizeof(ListNode));
+//    p->data = value;
+//    p->link = head;
+//    head = p;
+//    return head;
+//}
+//
+//// 노드 pre 뒤에 새로운 노드 삽입
+//ListNode* insert(ListNode* head, ListNode* pre, int value) {
+//    ListNode* p;
+//    p = malloc(sizeof(ListNode));
+//    p->data = value;
+//    p->link = head->link;
+//    pre->link = p;
+//    return head;
+//}
+//
+//ListNode* delete_first(ListNode* head) {
+//    ListNode* removed;
+//    if(head == NULL) return NULL;
+//    removed = head;
+//    head = head->link;
+//    free(removed);
+//    return head;
+//}
+//
+//// pre가 가리키는 노드의 다음 노드를 삭제한다.
+//ListNode* delete(ListNode* head, ListNode* pre) {
+//    ListNode* removed = head;
+//    head = head->link;
+//    free(pre->link);
+//    pre->link = pre->link->link;
+//    return head;
+//}
+//
+//void print_list(ListNode *head) {
+//    for (ListNode *p = head; p != NULL; p = p->link)
+//        printf("%d->", p->data);
+//    printf("NULL \n");
+//}
+//
+//int main() {
+//    ListNode* head = NULL;
+//
+//    for (int i = 5; i >= 1; i--) {
+//        head = insert_first(head, i*10);
+//        print_list(head);
+//    }
+//
+//    for (int i = 1; i <= 2; i++) {
+//        head = delete_first(head);
+//        print_list(head);
+//    }
+//
+//    return 0;
+//} 
