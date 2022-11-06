@@ -1359,4 +1359,14 @@
 //    }
 //
 //    return 0;
-//} 
+//}
+
+#include <stdio.h>
+#include <string.h>
+int main() {
+    char a[5] = {'a', 'b', 'c', 'd', 'e'};
+    char b[5] = {'1', '2', '3', '4', '5'};
+    strcat(a, b);
+    puts(a);
+    printf("%s", b);
+}
