@@ -1294,6 +1294,7 @@
 //    print_list(&list);
 //    return 0;
 //}
+//
 //#include<stdio.h>
 //#include<stdlib.h>
 //
@@ -1360,60 +1361,103 @@
 //
 //    return 0;
 //}
-//#include <stdio.h>
-//#include <stdlib.h>
-//
-//typedef struct ListNode {     // 노드 타입
-//    int data;
-//    struct ListNode* link;
-//} ListNode;
-//
-//// 리스트의 항목 출력
-//void print_list(ListNode* head) {
-//    printf("%d->", head->data);
-//     // 리스트 출력
-//    for (ListNode *p = head; p == head; p = p->link)
-//        printf("%d->", p->data);
-//}
-//ListNode* insert_first(ListNode* head, int item) {
-//    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
-//    node->data = item;
-//    if (head == NULL) {
-//        // head가 NULL일 경우
-//    }
-//    else {
-//            // (1) 링크 처리
-//            // (2) 링크 처리
-//    }
-//    return head;    // 변경된 헤드 포인터를 반환한다.
-//}
-//
-//ListNode* insert_last(ListNode* head, int item)
-//{
-//    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
-//    node->data = item;
-//    if (head == NULL) {
-//        // head가 NULL일 경우
-//        head->link = head;
-//    }
-//    else {
-//        // (1) 링크 처리
-//        ListNode* last = malloc(sizeof(ListNode));
-//        // (2) 링크 처리
-//        last->data = item;
-//        // (3) 링크 처리
-//        last->link = head;
-//    }
-//    return head;    // 변경된 헤드 포인터를 반환한다.
-//}
-//
-//int main(void) {
-//    ListNode* head = NULL;
-//
-//    head = insert_last(head, 20);
-//    head = insert_last(head, 30);
-//    head = insert_last(head, 40);
-//    head = insert_first(head, 10);
-//    print_list(head);
-//    return 0;
-//}
+// MARK: - 원형 연결 리스트
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct ListNode {     // 노드 타입
+    int data;
+    struct ListNode* link;
+} ListNode;
+
+// 리스트의 항목 출력
+void print_list(ListNode* head) {
+    if (head == NULL) {
+        printf("head is null");
+        return;
+    }
+    ListNode *p;
+     // 리스트 출력
+    for (p = head->link; p != head; p = p->link)
+        printf("%d->", p->data);
+    printf("%d->\n", p->data);
+}
+ListNode* insert_first(ListNode* head, int item) {
+    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+    node->data = item;
+    if (head == NULL) {
+        // head가 NULL일 경우
+        head = node;
+        node->link = head;
+//        head->link = node;
+    }
+    else {
+        // (1) 링크 처리
+        node->link = head->link;
+        head->link = node;
+    }
+    return head;    // 변경된 헤드 포인터를 반환한다.
+}
+
+ListNode* delete_first(ListNode* head, int item) {
+    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+    node->data = item;
+    if (head == NULL) {
+        // head가 NULL일 경우
+    }
+    else {
+            // (1) 링크 처리
+            // (2) 링크 처리
+    }
+    return head;    // 변경된 헤드 포인터를 반환한다.
+}
+
+ListNode* insert_last(ListNode* head, int item)
+{
+    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+    node->data = item;
+    if (head == NULL) {
+        // head가 NULL일 경우
+        head = node;
+        node->link = head;
+    }
+    else {
+        // (1) 링크 처리
+        node->link = head->link;
+        // (2) 링크 처리
+        head->link = node;
+        // (3) 링크 처리
+        head = node;
+    }
+    return head;    // 변경된 헤드 포인터를 반환한다.
+}
+
+ListNode* delete_last(ListNode* head, int item)
+{
+    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+    node->data = item;
+    if (head == NULL) {
+        // head가 NULL일 경우
+        head->link = head;
+    }
+    else {
+        // (1) 링크 처리
+        ListNode* last = malloc(sizeof(ListNode));
+        // (2) 링크 처리
+        last->data = item;
+        // (3) 링크 처리
+        last->link = head;
+    }
+    return head;    // 변경된 헤드 포인터를 반환한다.
+}
+
+int main(void) {
+    ListNode* head = NULL;
+
+    head = insert_last(head, 20);
+    head = insert_last(head, 30);
+    head = insert_last(head, 40);
+    head = insert_first(head, 10);
+    print_list(head);
+    return 0;
+}
