@@ -1373,7 +1373,7 @@ typedef struct ListNode {     // 노드 타입
 // 리스트의 항목 출력
 void print_list(ListNode* head) {
     if (head == NULL) {
-        printf("head is null");
+        printf("head is null\n");
         return;
     }
     ListNode *p;
@@ -1399,15 +1399,16 @@ ListNode* insert_first(ListNode* head, int item) {
     return head;    // 변경된 헤드 포인터를 반환한다.
 }
 
-ListNode* delete_first(ListNode* head, int item) {
-    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
-    node->data = item;
+ListNode* delete_first(ListNode* head) {
     if (head == NULL) {
-        // head가 NULL일 경우
+        printf("head가 이미 비어있어요!\n");
     }
     else {
-            // (1) 링크 처리
-            // (2) 링크 처리
+        if (head->link == head->link->link) {
+            head = NULL;
+        } else {
+            head->link = head->link->link;
+        }
     }
     return head;    // 변경된 헤드 포인터를 반환한다.
 }
@@ -1432,21 +1433,15 @@ ListNode* insert_last(ListNode* head, int item)
     return head;    // 변경된 헤드 포인터를 반환한다.
 }
 
-ListNode* delete_last(ListNode* head, int item)
-{
-    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
-    node->data = item;
+ListNode* delete_last(ListNode* head) {
     if (head == NULL) {
-        // head가 NULL일 경우
-        head->link = head;
+        printf("head가 이미 비어있어요!\n");
     }
     else {
-        // (1) 링크 처리
-        ListNode* last = malloc(sizeof(ListNode));
-        // (2) 링크 처리
-        last->data = item;
-        // (3) 링크 처리
-        last->link = head;
+        ListNode *p;
+        for (p = head; p->link != head; p = p->link);
+        p->link = head->link;
+        head = p;
     }
     return head;    // 변경된 헤드 포인터를 반환한다.
 }
@@ -1454,10 +1449,19 @@ ListNode* delete_last(ListNode* head, int item)
 int main(void) {
     ListNode* head = NULL;
 
+    print_list(head);
     head = insert_last(head, 20);
     head = insert_last(head, 30);
     head = insert_last(head, 40);
     head = insert_first(head, 10);
+    print_list(head);
+    head = delete_last(head);
+    print_list(head);
+    head = delete_last(head);
+    print_list(head);
+    head = delete_first(head);
+    print_list(head);
+    head = delete_first(head);
     print_list(head);
     return 0;
 }
