@@ -1389,7 +1389,6 @@ ListNode* insert_first(ListNode* head, int item) {
         // head가 NULL일 경우
         head = node;
         node->link = head;
-//        head->link = node;
     }
     else {
         // (1) 링크 처리
@@ -1400,14 +1399,16 @@ ListNode* insert_first(ListNode* head, int item) {
 }
 
 ListNode* delete_first(ListNode* head) {
+    ListNode *removed = head->link;
     if (head == NULL) {
         printf("head가 이미 비어있어요!\n");
     }
     else {
-        if (head->link == head->link->link) {
+        if (head->link == removed ->link) {
             head = NULL;
         } else {
-            head->link = head->link->link;
+            head->link = removed->link;
+            free(removed);
         }
     }
     return head;    // 변경된 헤드 포인터를 반환한다.
@@ -1441,6 +1442,7 @@ ListNode* delete_last(ListNode* head) {
         ListNode *p;
         for (p = head; p->link != head; p = p->link);
         p->link = head->link;
+        free(head);
         head = p;
     }
     return head;    // 변경된 헤드 포인터를 반환한다.
