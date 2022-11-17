@@ -1362,108 +1362,275 @@
 //    return 0;
 //}
 // MARK: - 원형 연결 리스트
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//typedef struct ListNode {     // 노드 타입
+//    int data;
+//    struct ListNode* link;
+//} ListNode;
+//
+//// 리스트의 항목 출력
+//void print_list(ListNode* head) {
+//    if (head == NULL) {
+//        printf("head is null\n");
+//        return;
+//    }
+//    ListNode *p;
+//     // 리스트 출력
+//    for (p = head->link; p != head; p = p->link)
+//        printf("%d->", p->data);
+//    printf("%d->\n", p->data);
+//}
+//ListNode* insert_first(ListNode* head, int item) {
+//    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+//    node->data = item;
+//    if (head == NULL) {
+//        // head가 NULL일 경우
+//        head = node;
+//        node->link = head;
+//    }
+//    else {
+//        // (1) 링크 처리
+//        node->link = head->link;
+//        head->link = node;
+//    }
+//    return head;    // 변경된 헤드 포인터를 반환한다.
+//}
+//
+//ListNode* delete_first(ListNode* head) {
+//    ListNode *removed = head->link;
+//    if (head == NULL) {
+//        printf("head가 이미 비어있어요!\n");
+//    }
+//    else {
+//        if (head->link == removed ->link) {
+//            head = NULL;
+//        } else {
+//            head->link = removed->link;
+//            free(removed);
+//        }
+//    }
+//    return head;    // 변경된 헤드 포인터를 반환한다.
+//}
+//
+//ListNode* insert_last(ListNode* head, int item)
+//{
+//    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+//    node->data = item;
+//    if (head == NULL) {
+//        // head가 NULL일 경우
+//        head = node;
+//        node->link = head;
+//    }
+//    else {
+//        // (1) 링크 처리
+//        node->link = head->link;
+//        // (2) 링크 처리
+//        head->link = node;
+//        // (3) 링크 처리
+//        head = node;
+//    }
+//    return head;    // 변경된 헤드 포인터를 반환한다.
+//}
+//
+//ListNode* delete_last(ListNode* head) {
+//    if (head == NULL) {
+//        printf("head가 이미 비어있어요!\n");
+//    }
+//    else {
+//        ListNode *p;
+//        for (p = head; p->link != head; p = p->link);
+//        p->link = head->link;
+//        free(head);
+//        head = p;
+//    }
+//    return head;    // 변경된 헤드 포인터를 반환한다.
+//}
+//
+//int main(void) {
+//    ListNode* head = NULL;
+//
+//    print_list(head);
+//    head = insert_last(head, 20);
+//    head = insert_last(head, 30);
+//    head = insert_last(head, 40);
+//    head = insert_first(head, 10);
+//    print_list(head);
+//    head = delete_last(head);
+//    print_list(head);
+//    head = delete_last(head);
+//    print_list(head);
+//    head = delete_first(head);
+//    print_list(head);
+//    head = delete_first(head);
+//    print_list(head);
+//    return 0;
+//}
+//MARK: - 연결리스트 오름차순
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//typedef struct ListNode {     // 노드 타입
+//    int data;
+//    struct ListNode* link;
+//} ListNode;
+//
+//// 리스트의 항목 출력
+//void print_list(ListNode* head) {
+//    if (head == NULL) {
+//        printf("head is null\n");
+//        return;
+//    }
+//    ListNode *p;
+//    // 리스트 출력
+//    for (p = head->link; p != head; p = p->link)
+//        printf("%d->", p->data);
+//    printf("%d->NULL\n", p->data);
+//}
+//ListNode* insertNode(ListNode* head, int item) {
+//    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+////    node->data = item;
+//    if (head == NULL) {
+//        node->data = item;
+//        // head가 NULL일 경우
+//        head = node;
+//        node->link = head;
+//    }
+//    else {
+//        for (ListNode* list = head; ; list = list->link) {
+//            if (node->link->data > item) {
+//                node->data = item;
+//                break;;
+//            } else if (node == NULL) {
+//                node->data = item;
+//                break;
+//            }
+//        }
+//        // (1) 링크 처리
+//        node->link = head->link;
+//        // (2) 링크 처리
+//        head->link = node;
+//        // (3) 링크 처리
+//        head = node;
+//    }
+//    return head;    // 변경된 헤드 포인터를 반환한다.
+//}
+//int main(void) {
+//    ListNode* head = NULL;
+//    for (int i = 0; i < 8; i++) {
+//        int input;
+//        scanf("%d", &input);
+//        head = insertNode(head, input);
+//    }
+//    print_list(head);
+//    return 0;
+//}
+//MARK: - 리스트 자료구조
+
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct ListNode {     // 노드 타입
-    int data;
-    struct ListNode* link;
-} ListNode;
+#define MAX_LIST_SIZE 4
 
-// 리스트의 항목 출력
-void print_list(ListNode* head) {
-    if (head == NULL) {
-        printf("head is null\n");
+typedef int element;
+typedef struct {
+    element array[MAX_LIST_SIZE];
+    int size;
+} ArrayListType;
+
+void init(ArrayListType *L) {
+    L->size = 0;
+}
+
+int is_empty(ArrayListType *L) {
+    return L->size == 0 ? 1 : 0;
+}
+
+int is_full(ArrayListType *L) {
+    return L->size == MAX_LIST_SIZE ? 1 : 0;
+}
+
+element get_entry(ArrayListType *L, int pos) {
+    if (0 > pos || pos >= L->size) {
+        printf("Positioin Error");
+        exit(1);
+    }
+    return L->array[pos];
+}
+
+void print_list(ArrayListType *L) {
+    if (is_empty(L)) {
+        printf("List is empty! \n");
         return;
     }
-    ListNode *p;
-     // 리스트 출력
-    for (p = head->link; p != head; p = p->link)
-        printf("%d->", p->data);
-    printf("%d->\n", p->data);
-}
-ListNode* insert_first(ListNode* head, int item) {
-    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
-    node->data = item;
-    if (head == NULL) {
-        // head가 NULL일 경우
-        head = node;
-        node->link = head;
-    }
-    else {
-        // (1) 링크 처리
-        node->link = head->link;
-        head->link = node;
-    }
-    return head;    // 변경된 헤드 포인터를 반환한다.
+    int i;
+    for (i = 0; i < L->size; i++)
+        printf("%d-> ", L->array[i]);
+    printf("\n");
 }
 
-ListNode* delete_first(ListNode* head) {
-    ListNode *removed = head->link;
-    if (head == NULL) {
-        printf("head가 이미 비어있어요!\n");
+void insert(ArrayListType *L, int pos, element item) {
+    if(is_full(L)) {
+        printf("List OverFlow\n");
+        return;
     }
-    else {
-        if (head->link == removed ->link) {
-            head = NULL;
-        } else {
-            head->link = removed->link;
-            free(removed);
-        }
+    int i;
+    if (0 <= pos && pos <= L->size) {
+        for (i = L->size - 1; i >= pos; i--)
+            L->array[i + 1] = L->array[i];
+        L->array[pos] = item;
+        L->size++;
     }
-    return head;    // 변경된 헤드 포인터를 반환한다.
 }
 
-ListNode* insert_last(ListNode* head, int item)
-{
-    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
-    node->data = item;
-    if (head == NULL) {
-        // head가 NULL일 경우
-        head = node;
-        node->link = head;
-    }
-    else {
-        // (1) 링크 처리
-        node->link = head->link;
-        // (2) 링크 처리
-        head->link = node;
-        // (3) 링크 처리
-        head = node;
-    }
-    return head;    // 변경된 헤드 포인터를 반환한다.
+void insert_first(ArrayListType *L, element item) {
+    insert(L, 0, item);
 }
 
-ListNode* delete_last(ListNode* head) {
-    if (head == NULL) {
-        printf("head가 이미 비어있어요!\n");
+void insert_last(ArrayListType *L, element item) {
+    if(is_full(L)) {
+        printf("List OverFlow\n");
+        return;
     }
-    else {
-        ListNode *p;
-        for (p = head; p->link != head; p = p->link);
-        p->link = head->link;
-        free(head);
-        head = p;
+    L->array[L->size++] = item;
+}
+
+element delete(ArrayListType *L, int pos) {
+    element item;
+    int i;
+    if(is_empty(L)) {
+        printf("List is Empty! \n");
+        exit(1);
     }
-    return head;    // 변경된 헤드 포인터를 반환한다.
+    if (0 > pos || pos >= L->size) {
+        printf("Positioin Error");
+        exit(1);
+    }
+    for (i = pos - 1; i >= L->size - 1; i--)
+        L->array[i + 1] = L->array[i];
+    item = L->array[pos];
+    L->size++;
+    return item;
 }
 
 int main(void) {
-    ListNode* head = NULL;
-
-    print_list(head);
-    head = insert_last(head, 20);
-    head = insert_last(head, 30);
-    head = insert_last(head, 40);
-    head = insert_first(head, 10);
-    print_list(head);
-    head = delete_last(head);
-    print_list(head);
-    head = delete_last(head);
-    print_list(head);
-    head = delete_first(head);
-    print_list(head);
-    head = delete_first(head);
-    print_list(head);
-    return 0;
+    ArrayListType list;
+    init(&list);
+    insert(&list, 0, 10);
+    print_list(&list);
+    insert(&list, 1, 20);
+    print_list(&list);
+    insert_first(&list, 30);
+    print_list(&list);
+    insert_last(&list, 40);
+    print_list(&list);
+    insert(&list, 0, 50);
+    print_list(&list);
+    
+    int i = 0, j = list.size;
+    for (; i < j; i++) {
+        delete(&list, 0);
+        print_list(&list);
+    }
 }
