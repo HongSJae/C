@@ -1526,111 +1526,62 @@
 //    print_list(head);
 //    return 0;
 //}
-//MARK: - 리스트 자료구조
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct TreeNode {
+    int data;
+    struct TreeNode* left, * right;
+} TreeNode;
+//         15
+//     4         20
+//   1          16 25
+TreeNode n1 = { 1, NULL, NULL };
+TreeNode n2 = { 4, &n1, NULL };
+TreeNode n3 = { 16, NULL, NULL };
+TreeNode n4 = { 25, NULL, NULL };
+TreeNode n5 = { 20, &n3, &n4 };
+TreeNode n6 = { 15, &n2, &n5 };
+TreeNode* root = &n6;
 
-#include <stdio.h>
-#include <stdlib.h>
-
-#define MAX_LIST_SIZE 4
-
-typedef int element;
-typedef struct {
-    element array[MAX_LIST_SIZE];
-    int size;
-} ArrayListType;
-
-void init(ArrayListType *L) {
-    L->size = 0;
-}
-
-int is_empty(ArrayListType *L) {
-    return L->size == 0 ? 1 : 0;
-}
-
-int is_full(ArrayListType *L) {
-    return L->size == MAX_LIST_SIZE ? 1 : 0;
-}
-
-element get_entry(ArrayListType *L, int pos) {
-    if (0 > pos || pos >= L->size) {
-        printf("Positioin Error");
-        exit(1);
+// 전위 순회
+void preorders(TreeNode* root) {
+     if (root != NULL) { // 종료 조건
+         printf("[%d] ", root->data);
+         // 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+         preorders(root->left);    // 왼쪽서브트리 순회
+         preorders(root->right);    // 오른쪽서브트리 순회
     }
-    return L->array[pos];
 }
 
-void print_list(ArrayListType *L) {
-    if (is_empty(L)) {
-        printf("List is empty! \n");
-        return;
+void inorders(TreeNode* root) {
+     if (root != NULL) { // 종료 조건
+         inorders(root->left);    // 왼쪽서브트리 순회
+         printf("[%d] ", root->data);
+         // 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+         inorders(root->right);    // 오른쪽서브트리 순회
     }
-    int i;
-    for (i = 0; i < L->size; i++)
-        printf("%d-> ", L->array[i]);
+}
+
+void postorders(TreeNode* root) {
+     if (root != NULL) { // 종료 조건
+         postorders(root->left);    // 왼쪽서브트리 순회
+         postorders(root->right);    // 오른쪽서브트리 순회
+         printf("[%d] ", root->data);
+         // 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+    }
+}
+
+
+int main(void)
+{
+    printf("전위 순회 결과 = ");
+    preorders(root);
     printf("\n");
-}
-
-void insert(ArrayListType *L, int pos, element item) {
-    if(is_full(L)) {
-        printf("List OverFlow\n");
-        return;
-    }
-    int i;
-    if (0 <= pos && pos <= L->size) {
-        for (i = L->size - 1; i >= pos; i--)
-            L->array[i + 1] = L->array[i];
-        L->array[pos] = item;
-        L->size++;
-    }
-}
-
-void insert_first(ArrayListType *L, element item) {
-    insert(L, 0, item);
-}
-
-void insert_last(ArrayListType *L, element item) {
-    if(is_full(L)) {
-        printf("List OverFlow\n");
-        return;
-    }
-    L->array[L->size++] = item;
-}
-
-element delete(ArrayListType *L, int pos) {
-    element item;
-    int i;
-    if(is_empty(L)) {
-        printf("List is Empty! \n");
-        exit(1);
-    }
-    if (0 > pos || pos >= L->size) {
-        printf("Positioin Error");
-        exit(1);
-    }
-    for (i = pos - 1; i >= L->size - 1; i--)
-        L->array[i + 1] = L->array[i];
-    item = L->array[pos];
-    L->size++;
-    return item;
-}
-
-int main(void) {
-    ArrayListType list;
-    init(&list);
-    insert(&list, 0, 10);
-    print_list(&list);
-    insert(&list, 1, 20);
-    print_list(&list);
-    insert_first(&list, 30);
-    print_list(&list);
-    insert_last(&list, 40);
-    print_list(&list);
-    insert(&list, 0, 50);
-    print_list(&list);
-    
-    int i = 0, j = list.size;
-    for (; i < j; i++) {
-        delete(&list, 0);
-        print_list(&list);
-    }
+    printf("중위 순회 결과 = ");
+    inorders(root);
+    printf("\n");
+    printf("후위 순회 결과 = ");
+    postorders(root);
+    printf("\n");
+    return 0;
 }

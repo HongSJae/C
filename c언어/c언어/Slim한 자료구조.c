@@ -104,3 +104,151 @@
 //        deque_print(&q);
 //    }
 //}
+
+//MARK: - 리스트 자료구조
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//#define MAX_LIST_SIZE 4
+//
+//typedef int element;
+//typedef struct {
+//    element array[MAX_LIST_SIZE];
+//    int size;
+//} ArrayListType;
+//
+//void init(ArrayListType *L) {
+//    L->size = 0;
+//}
+//
+//int is_empty(ArrayListType *L) {
+//    return L->size == 0 ? 1 : 0;
+//}
+//
+//int is_full(ArrayListType *L) {
+//    return L->size == MAX_LIST_SIZE ? 1 : 0;
+//}
+//
+//element get_entry(ArrayListType *L, int pos) {
+//    if (0 > pos || pos >= L->size) {
+//        printf("Positioin Error");
+//        exit(1);
+//    }
+//    return L->array[pos];
+//}
+//
+//void print_list(ArrayListType *L) {
+//    if (is_empty(L)) {
+//        printf("List is empty! \n");
+//        return;
+//    }
+//    int i;
+//    for (i = 0; i < L->size; i++)
+//        printf("%d-> ", L->array[i]);
+//    printf("\n");
+//}
+//
+//void insert(ArrayListType *L, int pos, element item) {
+//    if(is_full(L)) {
+//        printf("List OverFlow\n");
+//        return;
+//    }
+//    int i;
+//    if (0 <= pos && pos <= L->size) {
+//        for (i = L->size - 1; i >= pos; i--)
+//            L->array[i + 1] = L->array[i];
+//        L->array[pos] = item;
+//        L->size++;
+//    }
+//}
+//
+//void insert_first(ArrayListType *L, element item) {
+//    insert(L, 0, item);
+//}
+//
+//void insert_last(ArrayListType *L, element item) {
+//    if(is_full(L)) {
+//        printf("List OverFlow\n");
+//        return;
+//    }
+//    L->array[L->size++] = item;
+//}
+//
+//element delete(ArrayListType *L, int pos) {
+//    element item;
+//    int i;
+//    if(is_empty(L)) {
+//        printf("List is Empty! \n");
+//        exit(1);
+//    }
+//    if (0 > pos || pos >= L->size) {
+//        printf("Positioin Error");
+//        exit(1);
+//    }
+//    for (i = pos - 1; i >= L->size - 1; i--)
+//        L->array[i + 1] = L->array[i];
+//    item = L->array[pos];
+//    L->size++;
+//    return item;
+//}
+//
+//int main(void) {
+//    ArrayListType list;
+//    init(&list);
+//    insert(&list, 0, 10);
+//    print_list(&list);
+//    insert(&list, 1, 20);
+//    print_list(&list);
+//    insert_first(&list, 30);
+//    print_list(&list);
+//    insert_last(&list, 40);
+//    print_list(&list);
+//    insert(&list, 0, 50);
+//    print_list(&list);
+//
+//    int i = 0, j = list.size;
+//    for (; i < j; i++) {
+//        delete(&list, 0);
+//        print_list(&list);
+//    }
+//}
+
+//MARK: - 원형 리스트 자료구조
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//typedef int element;
+//typedef struct {
+//    element data;
+//    struct ListNode *link;
+//} ListNode;
+//
+//void print_list(ListNode *head) {
+//    ListNode *p;
+//    if(head == NULL) return;
+//    p = head->link;
+//    while (p != head) {
+//        printf("%d->", p->data);
+//        p = p->link;
+//    }
+//    printf("%d\n", p->data);
+//}
+//
+//ListNode* insert_first(ListNode *head, element data) {
+//    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+//    node->data = data;
+//    if (head == NULL) {
+//        head = node;
+//        node = node->link;
+//    } else {
+//        node->link = head->link;
+//        head->link = node;
+//    }
+//    return head;
+//}
+//
+//ListNode* insert_last(ListNode *head, element data) {
+//
+//}
