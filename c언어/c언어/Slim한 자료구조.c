@@ -252,3 +252,184 @@
 //ListNode* insert_last(ListNode *head, element data) {
 //
 //}
+
+//MARK: - 이중 연결 리스트
+//#include <stdio.h>
+//#include <stdlib.h>
+//typedef int element;
+//typedef struct DListNode {
+//    element data;
+//    struct DListNode* rlink;
+//    struct DListNode* llink;
+//} DListNode;
+//
+//void init(DListNode* phead) {
+//    phead->llink = phead->rlink = phead;
+//}
+//
+//void print_dlist(DListNode* phead) {
+//    DListNode* p;
+//    for (p = phead->rlink; p != phead; p = p->rlink) {
+//        printf("<-| %d |->", p->data);
+//    }
+//    printf("\n");
+//}
+//
+//void dinsert(DListNode *before, element data) {
+//    DListNode* newnode = (DListNode*)malloc(sizeof(DListNode));
+//    newnode->data = data;
+//    newnode->llink = before;
+//    newnode->rlink = before->rlink;
+//    before->rlink->llink = newnode;
+//    before->rlink = newnode;
+//}
+//
+//void ddelete(DListNode* head, DListNode* removed) {
+//    if (head == removed) return;
+//    removed->rlink->llink = head;
+//    head->rlink = removed->rlink;
+//    free(removed);
+//}
+//
+//int main() {
+//    DListNode* head = (DListNode*)malloc(sizeof(DListNode));
+//    init(head);
+//    printf("추가 단계\n");
+//    for (int i = 0; i < 5; i++) {
+//        dinsert(head, i);
+//        print_dlist(head);
+//    }
+//    printf("\n삭제 단계\n");
+//    for (int i = 0; i < 5; i++) {
+//        print_dlist(head);
+//        ddelete(head, head->rlink);
+//    }
+//    free(head);
+//}
+//MARK: - 연결리스트로 구현한 스택
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//typedef int element;
+//typedef struct StackNode {
+//    element data;
+//    struct StackNode* link;
+//} StackNode;
+//
+//typedef struct LinkedStackType {
+//    StackNode* top;
+//} LinkedStackType;
+//
+//void init(LinkedStackType* s) { s->top = NULL; }
+//int is_empty(LinkedStackType* s) { return (s->top == NULL); }
+//void push(LinkedStackType* s, element item) {
+//    StackNode* temp =(StackNode*)malloc(sizeof(StackNode));
+//    temp->data = item;
+//    temp->link = s->top;
+//    s->top = temp;
+//}
+//element pop(LinkedStackType* s) {
+//    if (is_empty(s)) {
+//        fprintf(stderr, "스택이 비어있음\n");
+//        exit(1);
+//    }
+//    StackNode* temp = s->top;
+//    element data = temp->data;
+//    s->top = temp->link;
+//    free(temp);
+//    return data;
+//}
+//element peek(LinkedStackType* s) {
+//    if (is_empty(s)) {
+//        fprintf(stderr, "스택이 비어있음\n");
+//        exit(1);
+//    }
+//    return s->top->data;
+//}
+//void print_stack(LinkedStackType *s) {
+//    StackNode* p;
+//    for (p = s->top; p != NULL; p = p->link)
+//        printf("%d->", p->data);
+//    printf("NULL\n");
+//}
+//int main(void) {
+//    LinkedStackType s;
+//    init(&s);
+//    push(&s, 1); print_stack(&s);
+//    push(&s, 2); print_stack(&s);
+//    push(&s, 3); print_stack(&s);
+//    pop(&s); print_stack(&s);
+//    pop(&s); print_stack(&s);
+//    pop(&s); print_stack(&s);
+//    return 0;
+//}
+//MARK: - 연결리스트로 구현한 큐
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//typedef int element;
+//typedef struct QueueNode {
+//    element data;
+//    struct QueueNode* link;
+//} QueueNode;
+//
+//typedef struct {
+//    QueueNode *front, *rear;
+//} LinkedQueueType;
+//
+//void init(LinkedQueueType *q) {
+//    q->front = q->rear = NULL;
+//}
+//
+//int is_empty(LinkedQueueType *q) {
+//    return q->front == NULL;
+//}
+//
+//void enqueue(LinkedQueueType *q, element data) {
+//    QueueNode *temp = (QueueNode*)malloc(sizeof(QueueNode));
+//    temp->data = data;
+//    temp->link = NULL;
+//    if (is_empty(q)) {
+//        q->front = q->rear = temp;
+//        return;
+//    }
+//    q->rear->link = temp;
+//    q->rear = temp;
+//}
+//
+//element dequeue(LinkedQueueType *q) {
+//    QueueNode *temp = q->front;
+//    element data;
+//    if (is_empty(q)) {
+//        fprintf(stderr, "스택이 비어있음\n");
+//        exit(1);
+//    }
+//    data = temp->data;
+//    q->front = temp->link;
+//    if (is_empty(q)) {
+//        q->front = NULL;
+//    }
+//    free(temp);
+//    return data;
+//}
+//
+//void print_queue(LinkedQueueType* q) {
+//    QueueNode *p;
+//    for (p = q->front; p != NULL; p = p->link) {
+//        printf("%d->", p->data);
+//    }
+//    printf("NULL\n");
+//}
+//
+//int main(void) {
+//    LinkedQueueType queue;
+//    init(&queue);
+//    enqueue(&queue, 1); print_queue(&queue);
+//    enqueue(&queue, 2); print_queue(&queue);
+//    enqueue(&queue, 3); print_queue(&queue);
+//    dequeue(&queue); print_queue(&queue);
+//    dequeue(&queue); print_queue(&queue);
+//    dequeue(&queue); print_queue(&queue);
+//    return 0;
+//}

@@ -1526,62 +1526,197 @@
 //    print_list(head);
 //    return 0;
 //}
-#include<stdio.h>
-#include<stdlib.h>
-typedef struct TreeNode {
-    int data;
-    struct TreeNode* left, * right;
-} TreeNode;
-//         15
-//     4         20
-//   1          16 25
-TreeNode n1 = { 1, NULL, NULL };
-TreeNode n2 = { 4, &n1, NULL };
-TreeNode n3 = { 16, NULL, NULL };
-TreeNode n4 = { 25, NULL, NULL };
-TreeNode n5 = { 20, &n3, &n4 };
-TreeNode n6 = { 15, &n2, &n5 };
-TreeNode* root = &n6;
-
-// 전위 순회
-void preorders(TreeNode* root) {
-     if (root != NULL) { // 종료 조건
-         printf("[%d] ", root->data);
-         // 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
-         preorders(root->left);    // 왼쪽서브트리 순회
-         preorders(root->right);    // 오른쪽서브트리 순회
-    }
-}
-
-void inorders(TreeNode* root) {
-     if (root != NULL) { // 종료 조건
-         inorders(root->left);    // 왼쪽서브트리 순회
-         printf("[%d] ", root->data);
-         // 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
-         inorders(root->right);    // 오른쪽서브트리 순회
-    }
-}
-
-void postorders(TreeNode* root) {
-     if (root != NULL) { // 종료 조건
-         postorders(root->left);    // 왼쪽서브트리 순회
-         postorders(root->right);    // 오른쪽서브트리 순회
-         printf("[%d] ", root->data);
-         // 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
-    }
-}
-
-
-int main(void)
-{
-    printf("전위 순회 결과 = ");
-    preorders(root);
-    printf("\n");
-    printf("중위 순회 결과 = ");
-    inorders(root);
-    printf("\n");
-    printf("후위 순회 결과 = ");
-    postorders(root);
-    printf("\n");
-    return 0;
-}
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef struct TreeNode {
+//    int data;
+//    struct TreeNode* left, * right;
+//} TreeNode;
+////         15
+////     4         20
+////   1          16 25
+//TreeNode n1 = { 1, NULL, NULL };
+//TreeNode n2 = { 4, &n1, NULL };
+//TreeNode n3 = { 16, NULL, NULL };
+//TreeNode n4 = { 25, NULL, NULL };
+//TreeNode n5 = { 20, &n3, &n4 };
+//TreeNode n6 = { 15, &n2, &n5 };
+//TreeNode* root = &n6;
+//
+//// 전위 순회
+//void preorders(TreeNode* root) {
+//     if (root != NULL) { // 종료 조건
+//         printf("[%d] ", root->data);
+//         // 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+//         preorders(root->left);    // 왼쪽서브트리 순회
+//         preorders(root->right);    // 오른쪽서브트리 순회
+//    }
+//}
+//
+//void inorders(TreeNode* root) {
+//     if (root != NULL) { // 종료 조건
+//         inorders(root->left);    // 왼쪽서브트리 순회
+//         printf("[%d] ", root->data);
+//         // 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+//         inorders(root->right);    // 오른쪽서브트리 순회
+//    }
+//}
+//
+//void postorders(TreeNode* root) {
+//     if (root != NULL) { // 종료 조건
+//         postorders(root->left);    // 왼쪽서브트리 순회
+//         postorders(root->right);    // 오른쪽서브트리 순회
+//         printf("[%d] ", root->data);
+//         // 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+//    }
+//}
+//
+//
+//int main(void)
+//{
+//    printf("전위 순회 결과 = ");
+//    preorders(root);
+//    printf("\n");
+//    printf("중위 순회 결과 = ");
+//    inorders(root);
+//    printf("\n");
+//    printf("후위 순회 결과 = ");
+//    postorders(root);
+//    printf("\n");
+//    return 0;
+//}
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//struct Treenode {
+//    int data;
+//    struct Treenode* left, * right;
+//};
+//
+//struct Treenode* new_node(int key) {
+//    struct Treenode* new = (struct Treenode*)malloc(sizeof(struct Treenode));
+//    new->data = key;
+//    new->left = NULL;
+//    new->right = NULL;
+//            //new노드에 key값 대입
+//      //new의 left와 right를 NULL로
+//    return new;
+//}
+//
+//struct Treenode* insert(struct Treenode* node, int key) {
+//    if (node == NULL) return new_node(key);
+//
+//    if (node->data > key)
+//        node->left = insert(node->left, key);//insert함수 호출
+//    else if (node->data < key)
+//        node->right = insert(node->right, key);//insert함수 호출
+//
+//    return node;
+//}
+//
+//struct Treenode* minValue(struct Treenode* node)
+//{
+//    struct Treenode* min = node;
+//
+//
+//     while (min->left != NULL)   // 맨 왼쪽 단말 노드를 찾으러 내려감
+//         min = min->left;
+//
+//    return min;
+//}
+//
+//
+//struct Treenode* delete(struct Treenode* node, int key)
+//{
+//    if (node == NULL) return node;
+//    if (key < node->data)
+//        node->left = delete(node->left, key);// delete함수 호출
+//    else if (key > node->data)
+//        node->right = delete(node->right, key);// delete함수 호출
+//
+//    // 키가 루트와 같으면 이 노드를 삭제하면 됨
+//    else {
+//        // 첫 번째나 두 번째 경우
+//        if (node->left == NULL) {
+//            struct Treenode* temp = node->right;// 오른쪽 서브 트리 링크를 저장해둔다.
+//            free(node);
+//            return temp;
+//        }
+//        else if (node->right == NULL) {
+//            struct Treenode* temp = node->left;// 왼쪽 서브 트리 링크를 저장해둔다.
+//            free(node);
+//            return temp;
+//        }
+//        // 세 번째 경우
+//        struct Treenode* temp  = minValue(node->right);
+//        // 가장 가까운 값(오른쪽 서브트리의 가장 작은 값)을 삭제할 노드의 데이터 필드에 대입한다.
+//        node->data = temp->data;
+//        node-> right = delete(node->right, temp->data);
+//        free(temp);
+//        // 가장 가까운 값의 노드를 삭제한다.
+//    }
+//    return node;
+//}
+//
+//int main() {
+//    struct Treenode* root = NULL;
+//    root = insert(root, 30);
+//    root = insert(root, 20);
+//    root = insert(root, 10);
+//    root = insert(root, 40);
+//    root = insert(root, 60);
+//    root = insert(root, 50);
+//    root = delete(root, 30);
+//    printf("루트 노드는 %d\n", root->data);
+//    printf("루트의 오른쪽 자식의 오른쪽 자식은 %d\n", root->right->right->data);
+//    return 0;
+//}
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//typedef struct ListNode {     // 노드 타입
+//    int data;
+//    struct ListNode* link;
+//} ListNode;
+//
+//// 리스트의 항목 출력
+//void print_list(ListNode* head) {
+//    if (head == NULL) {
+//        printf("head is null\n");
+//        return;
+//    }
+//    ListNode *p;
+//    // 리스트 출력
+//    for (p = head->link; p != head; p = p->link)
+//        printf("%d->", p->data);
+//    printf("%d->NULL\n", p->data);
+//}
+//ListNode* insertNode(ListNode* head, int item) {
+//    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+//    node->data = item;
+//    if (head == NULL) {
+//        // head가 NULL일 경우
+//        head = node;
+//        node->link = head;
+//    }
+//    else {
+//        for (ListNode *nxde; nxde->link->data >= item; nxde = nxde->link) {
+//            printf("hee");
+//        }
+//        node->data = item;
+//        node->link = head->link;
+////        pre->link = node;
+//        return head;
+//    }
+//    return head;    // 변경된 헤드 포인터를 반환한다.
+//}
+//int main(void) {
+//    ListNode* head = NULL;
+//    for (int i = 0; i < 8; i++) {
+//        int input;
+//        scanf("%d", &input);
+//        head = insertNode(head, input);
+//        print_list(head);
+//    }
+//    return 0;
+//}
