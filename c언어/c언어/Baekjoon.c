@@ -174,16 +174,40 @@
 //    return 0;
 //}
 //MARK: - 5597번
+//#include <stdio.h>
+//
+//int main() {
+//    int arr[28] = {0};
+//    for (int i = 0; i < 28; i++) {
+//        int n;
+//        scanf("%d", &n);
+//        arr[n - 1] = 1;
+//    }
+//    for (int i = 0; i < 30; i++)
+//        if (arr[i] == 0)
+//            printf("%d \n", i + 1);
+//}
+//MARK: - 2738번
 #include <stdio.h>
 
 int main() {
-    int arr[28] = {0};
-    for (int i = 0; i < 28; i++) {
-        int n;
-        scanf("%d", &n);
-        arr[n - 1] = 1;
+    int n, m;
+    scanf("%d %d", &n, &m);
+    int a[100][100], b[100][100];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            scanf("%d", &a[i][j]);
+        }
     }
-    for (int i = 0; i < 30; i++)
-        if (arr[i] == 0)
-            printf("%d \n", i + 1);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            scanf("%d", &b[i][j]);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            printf("%d ", a[i][j] + b[i][j]);
+        }
+        printf("\n");
+    }
 }
