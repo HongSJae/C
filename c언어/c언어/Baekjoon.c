@@ -19,12 +19,33 @@
 //    printf("20\n");
 //    printf("gtw030488");
 //}
-//MARK: - 7287번
+//MARK: - 11382번
+//#include <stdio.h>
+//
+//int main() {
+//    long a, b, c;
+//    scanf("%ld %ld %ld", &a, &b, &c);
+//    printf("%ld", a + b + c);
+//}
+//MARK: - 14681번
 #include <stdio.h>
 
 int main() {
-    long a, b, c;
-    scanf("%ld %ld %ld", &a, &b, &c);
-    printf("%ld", a + b + c);
+    int x, y;
+    int quadrant = 0;
+    scanf("%d %d", &x, &y);
+    if (x > 0 && y > 0) {
+        quadrant = 1;
+    }
+    if (x > 0 && y < 0) {
+        quadrant = 4;
+    }
+    if (x < 0 && y > 0) {
+        quadrant = 2;
+    }
+    if (x < 0 && y < 0) {
+        quadrant = 3;
+    }
+    printf("%d", quadrant);
+    
 }
-
