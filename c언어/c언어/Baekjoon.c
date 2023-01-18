@@ -118,11 +118,23 @@
 //    }
 //}
 //MARK: - 10951번
+//#include <stdio.h>
+//
+//int main(void) {
+//    int a,b;
+//    while(scanf("%d %d", &a, &b)!=EOF) {
+//        printf("%d\n", a+b);
+//    }
+//}
+//MARK: - 15552번
 #include <stdio.h>
 
-int main(void) {
-    int a,b;
-    while(scanf("%d %d", &a, &b)!=EOF) {
-        printf("%d\n", a+b);
+int main() {
+    int count;
+    scanf("%d", &count);
+    for (int i = 0; i < count; i++) {
+        int a, b;
+        scanf("%d %d", &a, &b);
+        printf("%d\n", a + b);
     }
 }
