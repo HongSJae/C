@@ -1,4 +1,4 @@
-////MARK: - 10699번
+//MARK: - 10699번
 //#include <stdio.h>
 //#include <time.h>
 //
@@ -13,11 +13,18 @@
 //    return 0;
 //}
 //MARK: - 7287번
+//#include <stdio.h>
+//
+//int main() {
+//    printf("20\n");
+//    printf("gtw030488");
+//}
+//MARK: - 7287번
 #include <stdio.h>
-#include <time.h>
 
 int main() {
-    printf("20\n");
-    printf("gtw030488");
+    long a, b, c;
+    scanf("%ld %ld %ld", &a, &b, &c);
+    printf("%ld", a + b + c);
 }
 
