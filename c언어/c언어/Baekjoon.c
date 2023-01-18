@@ -105,15 +105,24 @@
 //    }
 //}
 //MARK: - 2438번
+//#include <stdio.h>
+//
+//int main() {
+//    int count = 0;
+//    scanf("%d", &count);
+//    for (int i = 1; i <= count; i++) {
+//        for (int j = 1; j <= i; j++) {
+//            printf("*");
+//        }
+//        printf("\n");
+//    }
+//}
+//MARK: - 10951번
 #include <stdio.h>
 
-int main() {
-    int count = 0;
-    scanf("%d", &count);
-    for (int i = 1; i <= count; i++) {
-        for (int j = 1; j <= i; j++) {
-            printf("*");
-        }
-        printf("\n");
+int main(void) {
+    int a,b;
+    while(scanf("%d %d", &a, &b)!=EOF) {
+        printf("%d\n", a+b);
     }
 }
