@@ -59,12 +59,25 @@
 //    printf("%ld",labs(n - m));
 //}
 //MARK: - 2741번
+//#include <stdio.h>
+//
+//int main() {
+//    int a;
+//    scanf("%d", &a);
+//    for (int i = 1; i <= a; i++) {
+//        printf("%d\n", i);
+//    }
+//}
+//MARK: - 10872번
 #include <stdio.h>
 
 int main() {
     int a;
+    int fac = 1;
     scanf("%d", &a);
     for (int i = 1; i <= a; i++) {
-        printf("%d\n", i);
+        fac *= i;
     }
+    printf("%d", fac);
 }
+
