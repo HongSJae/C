@@ -69,15 +69,28 @@
 //    }
 //}
 //MARK: - 10872번
+//#include <stdio.h>
+//
+//int main() {
+//    int a;
+//    int fac = 1;
+//    scanf("%d", &a);
+//    for (int i = 1; i <= a; i++) {
+//        fac *= i;
+//    }
+//    printf("%d", fac);
+//}
+//MARK: - 10872번
 #include <stdio.h>
 
 int main() {
-    int a;
-    int fac = 1;
-    scanf("%d", &a);
-    for (int i = 1; i <= a; i++) {
-        fac *= i;
+    int count = 0;
+    scanf("%d", &count);
+    int a[100], b[100] = {0};
+    for (int i = 0; i < count; i++) {
+        scanf("%d %d", &a[i], &b[i]);
     }
-    printf("%d", fac);
+    for (int i = 0; i < count; i++) {
+        printf("%d\n", a[i] + b[i]);
+    }
 }
-
