@@ -95,12 +95,25 @@
 //    }
 //}
 //MARK: - 2739번
+//#include <stdio.h>
+//
+//int main() {
+//    int count = 0;
+//    scanf("%d", &count);
+//    for (int i = 1; i <= 9; i++) {
+//        printf("%d * %d = %d\n", count, i, count * i);
+//    }
+//}
+//MARK: - 2438번
 #include <stdio.h>
 
 int main() {
     int count = 0;
     scanf("%d", &count);
-    for (int i = 1; i <= 9; i++) {
-        printf("%d * %d = %d\n", count, i, count * i);
+    for (int i = 1; i <= count; i++) {
+        for (int j = 1; j <= i; j++) {
+            printf("*");
+        }
+        printf("\n");
     }
 }
