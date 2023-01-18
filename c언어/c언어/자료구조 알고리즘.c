@@ -1721,81 +1721,82 @@
 //    return 0;
 //}
 
-#include<stdio.h>
-#include<stdlib.h>
-#include <time.h>
-#define MAX_SIZE 10
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include <time.h>
+//#define MAX_SIZE 10
+//
+//int arr[MAX_SIZE];
+//void print_arr(void) {
+//    for (int i = 0; i < MAX_SIZE; i++) {
+//        printf("%d ",arr[i]);
+//    }
+//    printf("\n");
+//
+//}
+//void mix_arr(void) {
+//    int i, j;
+//    for (i = 0; i < 10; i++) {
+//        arr[i] = (rand() % 10) + 1;
+//        for (j = 0; j < i; j++) {
+//            if (arr[i] == arr[j]) i--;
+//        }
+//    }
+//    printf("\n");
+//}
+////MARK: - 선택 정렬
+//void selection_sort(void) {
+//    printf("---선택 정렬---");
+//    mix_arr();
+//    int least, tmp;
+//    for (int i = 0; i < MAX_SIZE - 1; i++) {
+//        least = i;
+//        for (int j = i+1; j < MAX_SIZE; j++) {
+//            if (arr[least] > arr[j]) {
+//                least = j;
+//            }
+//        }
+//        tmp = arr[i];
+//        arr[i] = arr[least];
+//        arr[least] = tmp;
+//        print_arr();
+//    }
+//}
+////MARK: - 삽입 정렬
+//void insertion_sort(void) {
+//    printf("---삽입 정렬---");
+//    mix_arr();
+//    int key, i, j;
+//    for (i = 1; i < MAX_SIZE; i++) {
+//        key = arr[i];
+//        for (j = i - 1; i >= 0 && arr[j] > key; j--)
+//            arr[j+1] = arr[j];
+//        arr[j + 1] = key;
+//        print_arr();
+//    }
+//}
+////MARK: - 삽입 정렬
+//void bubble_sort(void) {
+//    printf("---버블 정렬---");
+//    mix_arr();
+//    int temp;
+//    for (int i = MAX_SIZE - 1; i > 0; i--) {
+//        for (int j = 0; j <= i-1; j++) {
+//            if (arr[j] > arr[j+1]) {
+//                temp = arr[j];
+//                arr[j] = arr[i];
+//                arr[i] = temp;
+//            }
+//        }
+//        print_arr();
+//    }
+//}
+//
+//int main() {
+//    srand((unsigned)time(NULL)); // 씨드 변경 함수
+//    selection_sort();
+//    insertion_sort();
+//    bubble_sort();
+//    return 0;
+//}
 
-int arr[MAX_SIZE];
-void print_arr(void) {
-    for (int i = 0; i < MAX_SIZE; i++) {
-        printf("%d ",arr[i]);
-    }
-    printf("\n");
-   
-}
-void mix_arr(void) {
-    int i, j;
-    for (i = 0; i < 10; i++) {
-        arr[i] = (rand() % 10) + 1;
-        for (j = 0; j < i; j++) {
-            if (arr[i] == arr[j]) i--;
-        }
-    }
-    printf("\n");
-}
-//MARK: - 선택 정렬
-void selection_sort(void) {
-    printf("---선택 정렬---");
-    mix_arr();
-    int least, tmp;
-    for (int i = 0; i < MAX_SIZE - 1; i++) {
-        least = i;
-        for (int j = i+1; j < MAX_SIZE; j++) {
-            if (arr[least] > arr[j]) {
-                least = j;
-            }
-        }
-        tmp = arr[i];
-        arr[i] = arr[least];
-        arr[least] = tmp;
-        print_arr();
-    }
-}
-//MARK: - 삽입 정렬
-void insertion_sort(void) {
-    printf("---삽입 정렬---");
-    mix_arr();
-    int key, i, j;
-    for (i = 1; i < MAX_SIZE; i++) {
-        key = arr[i];
-        for (j = i - 1; i >= 0 && arr[j] > key; j--)
-            arr[j+1] = arr[j];
-        arr[j + 1] = key;
-        print_arr();
-    }
-}
-//MARK: - 삽입 정렬
-void bubble_sort(void) {
-    printf("---버블 정렬---");
-    mix_arr();
-    int temp;
-    for (int i = MAX_SIZE - 1; i > 0; i--) {
-        for (int j = 0; j <= i-1; j++) {
-            if (arr[j] > arr[j+1]) {
-                temp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = temp;
-            }
-        }
-        print_arr();
-    }
-}
-
-int main() {
-    srand((unsigned)time(NULL)); // 씨드 변경 함수
-    selection_sort();
-    insertion_sort();
-    bubble_sort();
-    return 0;
-}

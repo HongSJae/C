@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9017CE292816BC30002C428F /* 자료구조 알고리즘.c in Sources */ = {isa = PBXBuildFile; fileRef = 9017CE282816BC30002C428F /* 자료구조 알고리즘.c */; };
+		90B47E7A2977B114004D0662 /* Baekjoon.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B47E792977B114004D0662 /* Baekjoon.c */; };
 		90EB27AE291A44E5009BD751 /* Slim한 자료구조.c in Sources */ = {isa = PBXBuildFile; fileRef = 90EB27AD291A44E5009BD751 /* Slim한 자료구조.c */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		9017CE252816BC30002C428F /* c언어 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "c언어"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9017CE282816BC30002C428F /* 자료구조 알고리즘.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "자료구조 알고리즘.c"; sourceTree = "<group>"; };
+		90B47E792977B114004D0662 /* Baekjoon.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Baekjoon.c; sourceTree = "<group>"; };
 		90EB27AD291A44E5009BD751 /* Slim한 자료구조.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "Slim한 자료구조.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +63,7 @@
 			children = (
 				9017CE282816BC30002C428F /* 자료구조 알고리즘.c */,
 				90EB27AD291A44E5009BD751 /* Slim한 자료구조.c */,
+				90B47E792977B114004D0662 /* Baekjoon.c */,
 			);
 			path = "c언어";
 			sourceTree = "<group>";
@@ -124,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90EB27AE291A44E5009BD751 /* Slim한 자료구조.c in Sources */,
+				90B47E7A2977B114004D0662 /* Baekjoon.c in Sources */,
 				9017CE292816BC30002C428F /* 자료구조 알고리즘.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
