@@ -50,11 +50,21 @@
 //
 //}
 //MARK: - 2420번
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main() {
+//    long n, m;
+//    scanf("%ld %ld", &n, &m);
+//    printf("%ld",labs(n - m));
+//}
+//MARK: - 2741번
 #include <stdio.h>
-#include <stdlib.h>
 
 int main() {
-    long n, m;
-    scanf("%ld %ld", &n, &m);
-    printf("%ld",labs(n - m));
+    int a;
+    scanf("%d", &a);
+    for (int i = 1; i <= a; i++) {
+        printf("%d\n", i);
+    }
 }
