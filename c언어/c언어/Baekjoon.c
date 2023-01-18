@@ -212,10 +212,19 @@
 //    }
 //}
 //MARK: - 11654번
+//#include <stdio.h>
+//
+//int main() {
+//    char c;
+//    scanf("%c", &c);
+//    printf("%d", c);
+//}
+//MARK: - 2743번
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    char c;
-    scanf("%c", &c);
-    printf("%d", c);
+    char s[100] = {""};
+    scanf("%s", s);
+    printf("%ld", strlen(s));
 }
