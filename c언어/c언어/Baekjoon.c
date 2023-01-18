@@ -153,23 +153,37 @@
 //    return 0;
 //}
 //MARK: - 10807번
+//#include <stdio.h>
+//
+//int main() {
+//    int n, v;
+//    scanf("%d", &n);
+//
+//    int arr[100] = {0};
+//    for (int i = 0; i < n; ++i) {
+//        scanf("%d", &arr[i]);
+//    }
+//    scanf("%d", &v);
+//    int count = 0;
+//    for (int i = 0; i < n; ++i) {
+//        if (arr[i] == v) {
+//            count ++;
+//        }
+//    }
+//    printf("%d", count);
+//    return 0;
+//}
+//MARK: - 5597번
 #include <stdio.h>
 
 int main() {
-    int n, v;
-    scanf("%d", &n);
-
-    int arr[100] = {0};
-    for (int i = 0; i < n; ++i) {
-        scanf("%d", &arr[i]);
+    int arr[28] = {0};
+    for (int i = 0; i < 28; i++) {
+        int n;
+        scanf("%d", &n);
+        arr[n - 1] = 1;
     }
-    scanf("%d", &v);
-    int count = 0;
-    for (int i = 0; i < n; ++i) {
-        if (arr[i] == v) {
-            count ++;
-        }
-    }
-    printf("%d", count);
-    return 0;
+    for (int i = 0; i < 30; i++)
+        if (arr[i] == 0)
+            printf("%d \n", i + 1);
 }
