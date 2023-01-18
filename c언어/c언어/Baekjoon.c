@@ -28,24 +28,33 @@
 //    printf("%ld", a + b + c);
 //}
 //MARK: - 14681번
+//#include <stdio.h>
+//
+//int main() {
+//    int x, y;
+//    int quadrant = 0;
+//    scanf("%d %d", &x, &y);
+//    if (x > 0 && y > 0) {
+//        quadrant = 1;
+//    }
+//    if (x > 0 && y < 0) {
+//        quadrant = 4;
+//    }
+//    if (x < 0 && y > 0) {
+//        quadrant = 2;
+//    }
+//    if (x < 0 && y < 0) {
+//        quadrant = 3;
+//    }
+//    printf("%d", quadrant);
+//
+//}
+//MARK: - 2420번
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
-    int x, y;
-    int quadrant = 0;
-    scanf("%d %d", &x, &y);
-    if (x > 0 && y > 0) {
-        quadrant = 1;
-    }
-    if (x > 0 && y < 0) {
-        quadrant = 4;
-    }
-    if (x < 0 && y > 0) {
-        quadrant = 2;
-    }
-    if (x < 0 && y < 0) {
-        quadrant = 3;
-    }
-    printf("%d", quadrant);
-    
+    long n, m;
+    scanf("%ld %ld", &n, &m);
+    printf("%ld",labs(n - m));
 }
