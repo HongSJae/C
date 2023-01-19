@@ -299,12 +299,28 @@
 //    printf("\n");
 //}
 //MARK: - 11718번
+//#include <stdio.h>
+//
+//int main() {
+//    char s[101];
+//    while (scanf("%[^\n]\n",s)==1) {
+//        printf("%s\n",s);
+//    }
+//    return 0;
+//}
+//MARK: - 9086번
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    char s[101];
-    while (scanf("%[^\n]\n",s)==1) {
-        printf("%s\n",s);
+    int count = 0;
+    char str[100] = {};
+    scanf("%d", &count);
+    for (int i = 0; i < count; i++) {
+        scanf("%s", str);
+        int front = str[0];
+        int rear = str[strlen(str) - 1];
+        char result[2] = {front, rear};
+        printf("%c%c\n", result[0], result[1]);
     }
-    return 0;
 }
