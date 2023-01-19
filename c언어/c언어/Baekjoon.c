@@ -275,26 +275,36 @@
 //    return 0;
 //}
 //MARK: - 10809번
+//#include <stdio.h>
+//#include <string.h>
+//
+//int main()
+//{
+//    char str[100];
+//    scanf("%s", str);
+//
+//    for (int i = 0; i < 26; i++) {
+//        int value[26] = {0};
+//        char alpha = i + 97;
+//        for (int j = 0; j < strlen(str); j++) {
+//            if (str[j] == alpha) {
+//                value[i] = j;
+//                break;
+//            } else {
+//                value[i] = -1;
+//            }
+//        }
+//        printf("%d ", value[i]);
+//    }
+//    printf("\n");
+//}
+//MARK: - 11718번
 #include <stdio.h>
-#include <string.h>
 
-int main()
-{
-    char str[100];
-    scanf("%s", str);
-    
-    for (int i = 0; i < 26; i++) {
-        int value[26] = {0};
-        char alpha = i + 97;
-        for (int j = 0; j < strlen(str); j++) {
-            if (str[j] == alpha) {
-                value[i] = j;
-                break;
-            } else {
-                value[i] = -1;
-            }
-        }
-        printf("%d ", value[i]);
+int main() {
+    char s[101];
+    while (scanf("%[^\n]\n",s)==1) {
+        printf("%s\n",s);
     }
-    printf("\n");
+    return 0;
 }
