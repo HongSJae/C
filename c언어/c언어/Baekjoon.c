@@ -325,14 +325,13 @@
 //    }
 //}
 //MARK: - 15964번
-#include <stdio.h>
-#define hi(x, y) (x + y) * (x - y)
-
-//int func(int a, int b) {
-//    return (a + b) * (a - b);
+//#include <stdio.h>
+//#define hi(x, y) (x + y) * (x - y)
+//
+//int main() {
+//    long a, b;
+//    scanf("%ld %ld", &a, &b);
+//    printf("%ld", hi(a, b));
 //}
-int main() {
-    long a, b;
-    scanf("%ld %ld", &a, &b);
-    printf("%ld", hi(a, b));
-}
+//MARK: - 2475번
+//#include <stdio.h>
