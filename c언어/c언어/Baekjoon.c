@@ -229,25 +229,48 @@
 //    printf("%ld", strlen(s));
 //}
 //MARK: - 2744번
-#include <stdio.h>
-#include <string.h>
-
-int main()
-{
-    //97~122 a~z
-    //65~90 A~Z
-    char str[100] = " ";
-    int length, i;
-
-    scanf("%s", str);
-
-    length = strlen(str);
-
-    for (i = 0; i < length; i++) {
-        if (str[i] >= 97 && str[i] <= 122)
-            str[i] -= 32;
-        else if (str[i] >= 65 && str[i] <= 90)
-            str[i] += 32;
-    }
-    printf("%s", str);
-}
+//#include <stdio.h>
+//#include <string.h>
+//
+//int main()
+//{
+//    //97~122 a~z
+//    //65~90 A~Z
+//    char str[100] = " ";
+//    int length, i;
+//
+//    scanf("%s", str);
+//
+//    length = strlen(str);
+//
+//    for (i = 0; i < length; i++) {
+//        if (str[i] >= 97 && str[i] <= 122)
+//            str[i] -= 32;
+//        else if (str[i] >= 65 && str[i] <= 90)
+//            str[i] += 32;
+//    }
+//    printf("%s", str);
+//}
+//MARK: - 2754번
+//#include <stdio.h>
+//
+//int main(void)
+//{
+//    char str[3];
+//    double score = 4.0;
+//    scanf("%s", str);
+//
+//    if (str[0] == 'F') {
+//        printf("0.0\n");
+//        return 0;
+//    }
+//
+//    score -= str[0] - 'A';
+//    if (str[1] == '+')
+//        score += 0.3;
+//    if (str[1] == '-')
+//        score -= 0.3;
+//
+//    printf("%.1lf", score);
+//    return 0;
+//}
