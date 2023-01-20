@@ -335,3 +335,45 @@
 //}
 //MARK: - 2475번
 //#include <stdio.h>
+//
+//void input(int* value) {
+//    for (int i = 0; i < 5; i++) {
+//        scanf("%d", &value[i]);
+//    }
+//}
+//
+//void output(int* value) {
+//    int result = 0;
+//    for (int i = 0; i < 5; i++) {
+//        result += value[i] * value[i];
+//    }
+//    printf("%d", result % 10);
+//}
+//
+//int main() {
+//    int arr[5] = {};
+//    input(arr);
+//    output(arr);
+//}
+//MARK: - 2562번
+#include <stdio.h>
+
+void printMax(int* arr) {
+    int maxValue = 0;
+    int maxIndex = 0;
+    for (int i = 0; i < 9; i++) {
+        if (maxValue <= arr[i]) {
+            maxValue = arr[i];
+            maxIndex = i + 1;
+        }
+    }
+    printf("%d\n%d", maxValue, maxIndex);
+}
+
+int main() {
+    int arr[9] = {};
+    for (int i = 0; i < 9; i++) {
+        scanf("%d", &arr[i]);
+    }
+    printMax(arr);
+}
