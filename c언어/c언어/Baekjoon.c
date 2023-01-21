@@ -399,27 +399,48 @@
 //    }
 //}
 //MARK: - 2920번
+//#include <stdio.h>
+//
+//int main() {
+//    int arr[1000] = {};
+//    int check = 0;
+//    for (int i = 0; i < 8; i++) {
+//        scanf("%d", &arr[i]);
+//    }
+//    for (int i = 0; i < 7; i++) {
+//        if (arr[i] + 1 == arr[i + 1]) {
+//            check = 0;
+//        } else if (arr[i] - 1 == arr[i + 1]) {
+//            check = 1;
+//        } else {
+//            printf("mixed");
+//            return 0;
+//        }
+//    }
+//    if (check == 0) {
+//        printf("ascending");
+//        return 0;
+//    }
+//    printf("descending");
+//}
+//MARK: -  8958번
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    int arr[1000] = {};
-    int check = 0;
-    for (int i = 0; i < 8; i++) {
-        scanf("%d", &arr[i]);
-    }
-    for (int i = 0; i < 7; i++) {
-        if (arr[i] + 1 == arr[i + 1]) {
-            check = 0;
-        } else if (arr[i] - 1 == arr[i + 1]) {
-            check = 1;
-        } else {
-            printf("mixed");
-            return 0;
+    int number = 0;
+    char input[100] = {};
+    scanf("%d", &number);
+    for (int i = 0; i < number; i++) {
+        int sum = 0;
+        int add = 0;
+        scanf("%s", input);
+        for (int j = 0; j < strlen(input); j++) {
+            if (input[j] == 'O') {
+                sum += ++add;
+            } else
+                add = 0;
         }
+        printf("%d\n", sum);
     }
-    if (check == 0) {
-        printf("ascending");
-        return 0;
-    }
-    printf("descending");
 }
