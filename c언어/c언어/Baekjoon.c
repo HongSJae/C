@@ -424,23 +424,42 @@
 //    printf("descending");
 //}
 //MARK: -  8958번
+//#include <stdio.h>
+//#include <string.h>
+//
+//int main() {
+//    int number = 0;
+//    char input[100] = {};
+//    scanf("%d", &number);
+//    for (int i = 0; i < number; i++) {
+//        int sum = 0;
+//        int add = 0;
+//        scanf("%s", input);
+//        for (int j = 0; j < strlen(input); j++) {
+//            if (input[j] == 'O') {
+//                sum += ++add;
+//            } else
+//                add = 0;
+//        }
+//        printf("%d\n", sum);
+//    }
+//}
+//MARK: - 10818번
 #include <stdio.h>
-#include <string.h>
 
 int main() {
-    int number = 0;
-    char input[100] = {};
+    int number;
     scanf("%d", &number);
+    int arr[number];
     for (int i = 0; i < number; i++) {
-        int sum = 0;
-        int add = 0;
-        scanf("%s", input);
-        for (int j = 0; j < strlen(input); j++) {
-            if (input[j] == 'O') {
-                sum += ++add;
-            } else
-                add = 0;
-        }
-        printf("%d\n", sum);
+        scanf("%d", &arr[i]);
     }
+    int min = arr[0], max = arr[0];
+    for (int i = 0; i < number; i++) {
+        if (arr[i] < min)
+            min = arr[i];
+        if (arr[i] > max)
+            max = arr[i];
+    }
+    printf("%d %d", min, max);
 }
