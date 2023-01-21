@@ -445,21 +445,35 @@
 //    }
 //}
 //MARK: - 10818번
+//#include <stdio.h>
+//
+//int main() {
+//    int number;
+//    scanf("%d", &number);
+//    int arr[number];
+//    for (int i = 0; i < number; i++) {
+//        scanf("%d", &arr[i]);
+//    }
+//    int min = arr[0], max = arr[0];
+//    for (int i = 0; i < number; i++) {
+//        if (arr[i] < min)
+//            min = arr[i];
+//        if (arr[i] > max)
+//            max = arr[i];
+//    }
+//    printf("%d %d", min, max);
+//}
+//MARK: - 11720번
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
-    int number;
+    int number, sum = 0;
     scanf("%d", &number);
-    int arr[number];
+    char input[number];
+    scanf("%s", input);
     for (int i = 0; i < number; i++) {
-        scanf("%d", &arr[i]);
+        sum += input[i] - '0';
     }
-    int min = arr[0], max = arr[0];
-    for (int i = 0; i < number; i++) {
-        if (arr[i] < min)
-            min = arr[i];
-        if (arr[i] > max)
-            max = arr[i];
-    }
-    printf("%d %d", min, max);
+    printf("%d", sum);
 }
