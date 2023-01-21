@@ -356,24 +356,45 @@
 //    output(arr);
 //}
 //MARK: - 2562번
+//#include <stdio.h>
+//
+//void printMax(int* arr) {
+//    int maxValue = 0;
+//    int maxIndex = 0;
+//    for (int i = 0; i < 9; i++) {
+//        if (maxValue <= arr[i]) {
+//            maxValue = arr[i];
+//            maxIndex = i + 1;
+//        }
+//    }
+//    printf("%d\n%d", maxValue, maxIndex);
+//}
+//
+//int main() {
+//    int arr[9] = {};
+//    for (int i = 0; i < 9; i++) {
+//        scanf("%d", &arr[i]);
+//    }
+//    printMax(arr);
+//}
+//MARK: - 2675번
 #include <stdio.h>
-
-void printMax(int* arr) {
-    int maxValue = 0;
-    int maxIndex = 0;
-    for (int i = 0; i < 9; i++) {
-        if (maxValue <= arr[i]) {
-            maxValue = arr[i];
-            maxIndex = i + 1;
-        }
-    }
-    printf("%d\n%d", maxValue, maxIndex);
-}
+#include <string.h>
 
 int main() {
-    int arr[9] = {};
-    for (int i = 0; i < 9; i++) {
-        scanf("%d", &arr[i]);
+    char S[1000][1000] = {};
+    int R[1000] = {};
+    int T = 0;
+    scanf("%d", &T);
+    for (int i = 0; i < T; i++) {
+        scanf("%d %s", &R[i], S[i]);
     }
-    printMax(arr);
+    for (int i = 0; i < T; i++) {
+        for (int j = 0; j < strlen(S[i]); j++) {
+            for (int k = 0; k < R[i]; k++) {
+                printf("%c", S[i][j]);
+            }
+        }
+        printf("\n");
+    }
 }
