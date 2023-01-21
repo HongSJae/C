@@ -378,23 +378,48 @@
 //    printMax(arr);
 //}
 //MARK: - 2675번
+//#include <stdio.h>
+//#include <string.h>
+//
+//int main() {
+//    char S[1000][1000] = {};
+//    int R[1000] = {};
+//    int T = 0;
+//    scanf("%d", &T);
+//    for (int i = 0; i < T; i++) {
+//        scanf("%d %s", &R[i], S[i]);
+//    }
+//    for (int i = 0; i < T; i++) {
+//        for (int j = 0; j < strlen(S[i]); j++) {
+//            for (int k = 0; k < R[i]; k++) {
+//                printf("%c", S[i][j]);
+//            }
+//        }
+//        printf("\n");
+//    }
+//}
+//MARK: - 2920번
 #include <stdio.h>
-#include <string.h>
 
 int main() {
-    char S[1000][1000] = {};
-    int R[1000] = {};
-    int T = 0;
-    scanf("%d", &T);
-    for (int i = 0; i < T; i++) {
-        scanf("%d %s", &R[i], S[i]);
+    int arr[1000] = {};
+    int check = 0;
+    for (int i = 0; i < 8; i++) {
+        scanf("%d", &arr[i]);
     }
-    for (int i = 0; i < T; i++) {
-        for (int j = 0; j < strlen(S[i]); j++) {
-            for (int k = 0; k < R[i]; k++) {
-                printf("%c", S[i][j]);
-            }
+    for (int i = 0; i < 7; i++) {
+        if (arr[i] + 1 == arr[i + 1]) {
+            check = 0;
+        } else if (arr[i] - 1 == arr[i + 1]) {
+            check = 1;
+        } else {
+            printf("mixed");
+            return 0;
         }
-        printf("\n");
     }
+    if (check == 0) {
+        printf("ascending");
+        return 0;
+    }
+    printf("descending");
 }
