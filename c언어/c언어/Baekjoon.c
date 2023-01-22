@@ -464,16 +464,57 @@
 //    printf("%d %d", min, max);
 //}
 //MARK: - 11720번
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main() {
+//    int number, sum = 0;
+//    scanf("%d", &number);
+//    char input[number];
+//    scanf("%s", input);
+//    for (int i = 0; i < number; i++) {
+//        sum += input[i] - '0';
+//    }
+//    printf("%d", sum);
+//}
+//MARK: - 1152번
+//#include <stdio.h>
+//#include <string.h>
+//
+//int main() {
+//    char string[1000000] = {};
+//    int count = 0;
+//    scanf("%[^\n]s", string);
+//    if(string[0]!=' ') count++;
+//    for (int i = 1; i < strlen(string); i++) {
+//        if (string[i - 1] == ' ' && string[i] != ' ') {
+//            count++;
+//        }
+//    }
+//    printf("%d", count);
+//}
+//MARK: - 1157번
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
 int main() {
-    int number, sum = 0;
-    scanf("%d", &number);
-    char input[number];
-    scanf("%s", input);
-    for (int i = 0; i < number; i++) {
-        sum += input[i] - '0';
+    char a[1000000] = {};
+    int arr[26];
+    char output = '\0';
+    scanf("%s", a);
+    unsigned long size = strlen(a);
+    int max = 0;
+    for (int i = 0; i < size; i++) {
+        if (a[i] >= 'a') arr[a[i] - 'a']++;
+        else arr[a[i] - 'A']++;
     }
-    printf("%d", sum);
+    for (int i = 0; i < 26; i++) {
+        if (arr[i] == max)
+            output = '?';
+        else if (arr[i] > max) {
+            max = arr[i];
+            output = i + 'A';
+        }
+    }
+    printf("%c", output);
 }
