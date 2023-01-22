@@ -494,27 +494,53 @@
 //    printf("%d", count);
 //}
 //MARK: - 1157번
+//#include <stdio.h>
+//#include <string.h>
+//
+//int main() {
+//    char a[1000000] = {};
+//    int arr[26];
+//    char output = '\0';
+//    scanf("%s", a);
+//    unsigned long size = strlen(a);
+//    int max = 0;
+//    for (int i = 0; i < size; i++) {
+//        if (a[i] >= 'a') arr[a[i] - 'a']++;
+//        else arr[a[i] - 'A']++;
+//    }
+//    for (int i = 0; i < 26; i++) {
+//        if (arr[i] == max)
+//            output = '?';
+//        else if (arr[i] > max) {
+//            max = arr[i];
+//            output = i + 'A';
+//        }
+//    }
+//    printf("%c", output);
+//}
+//MARK: - 1546번
 #include <stdio.h>
-#include <string.h>
+
+double average(double arr[], int size) {
+    int aver = 0;
+    for (int i = 0; i < size; i++)
+        aver += arr[i];
+    aver /= size;
+    return aver;
+}
 
 int main() {
-    char a[1000000] = {};
-    int arr[26];
-    char output = '\0';
-    scanf("%s", a);
-    unsigned long size = strlen(a);
+    int size;
+    scanf("%d", &size);
+    double score[size];
     int max = 0;
     for (int i = 0; i < size; i++) {
-        if (a[i] >= 'a') arr[a[i] - 'a']++;
-        else arr[a[i] - 'A']++;
-    }
-    for (int i = 0; i < 26; i++) {
-        if (arr[i] == max)
-            output = '?';
-        else if (arr[i] > max) {
-            max = arr[i];
-            output = i + 'A';
+        scanf("%lf", &score[i]);
+        if (score[i] > max) {
+            max = score[i];
         }
     }
-    printf("%c", output);
+    for (int i = 0; i < size; i++)
+        score[i] *= 100.0 / max;
+    printf("%lf", average(score, size));
 }
