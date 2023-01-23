@@ -519,28 +519,45 @@
 //    printf("%c", output);
 //}
 //MARK: - 1546번
+//#include <stdio.h>
+//
+//double average(double arr[], int size) {
+//    int aver = 0;
+//    for (int i = 0; i < size; i++)
+//        aver += arr[i];
+//    aver /= size;
+//    return aver;
+//}
+//
+//int main() {
+//    int size;
+//    scanf("%d", &size);
+//    double score[size];
+//    int max = 0;
+//    for (int i = 0; i < size; i++) {
+//        scanf("%lf", &score[i]);
+//        if (score[i] > max) {
+//            max = score[i];
+//        }
+//    }
+//    for (int i = 0; i < size; i++)
+//        score[i] *= 100.0 / max;
+//    printf("%lf", average(score, size));
+//}
+//MARK: - 2439번
 #include <stdio.h>
-
-double average(double arr[], int size) {
-    int aver = 0;
-    for (int i = 0; i < size; i++)
-        aver += arr[i];
-    aver /= size;
-    return aver;
-}
 
 int main() {
     int size;
+    int j, i;
     scanf("%d", &size);
-    double score[size];
-    int max = 0;
-    for (int i = 0; i < size; i++) {
-        scanf("%lf", &score[i]);
-        if (score[i] > max) {
-            max = score[i];
+    for (i = 1; i <= size; i++) {
+        for (j = size - i; j > 0; j--) {
+            printf(" ");
         }
+        for (j = 0; j < i; j++) {
+            printf("*");
+        }
+        printf("\n");
     }
-    for (int i = 0; i < size; i++)
-        score[i] *= 100.0 / max;
-    printf("%lf", average(score, size));
 }
