@@ -577,14 +577,28 @@
 //        printf("%d\n",arr[i]);
 //}
 //MARK: - 2742번
+//#include <stdio.h>
+//
+//int main(){
+//    int num;
+//    scanf("%d", &num);
+//    for (int i = num; i > 0; i--) {
+//        printf("%d\n", i);
+//    }
+//}
+//MARK: - 2884번
 #include <stdio.h>
 
-int arr[10];
-
 int main(){
-    int num;
-    scanf("%d", &num);
-    for (int i = num; i > 0; i--) {
-        printf("%d\n", i);
+    int h, m;
+    scanf("%d %d", &h, &m);
+    m -= 45;
+    if (m < 0) {
+        m += 60;
+        if (h == 0)
+            h = 23;
+        else
+            h -= 1;
     }
+    printf("%d %d", h, m);
 }
