@@ -545,19 +545,34 @@
 //    printf("%lf", average(score, size));
 //}
 //MARK: - 2439번
+//#include <stdio.h>
+//
+//int main() {
+//    int size;
+//    int j, i;
+//    scanf("%d", &size);
+//    for (i = 1; i <= size; i++) {
+//        for (j = size - i; j > 0; j--) {
+//            printf(" ");
+//        }
+//        for (j = 0; j < i; j++) {
+//            printf("*");
+//        }
+//        printf("\n");
+//    }
+//}
+//MARK: -  2577번
 #include <stdio.h>
 
-int main() {
-    int size;
-    int j, i;
-    scanf("%d", &size);
-    for (i = 1; i <= size; i++) {
-        for (j = size - i; j > 0; j--) {
-            printf(" ");
-        }
-        for (j = 0; j < i; j++) {
-            printf("*");
-        }
-        printf("\n");
-    }
+int arr[10];
+
+int main(){
+    int A,B,C;
+    int num;
+    scanf("%d %d %d",&A,&B,&C);
+    num = A * B * C;
+    for(int i=num;i>0;i/=10)
+        arr[i%10]++;
+    for(int i=0;i<10;i++)
+        printf("%d\n",arr[i]);
 }
