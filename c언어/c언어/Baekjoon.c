@@ -603,23 +603,40 @@
 //    printf("%d %d", h, m);
 //}
 //MARK: - 2908번
+//#include <stdio.h>
+//
+//void term(int *num) {
+//    int a = (*num % 1000) / 100;
+//    int b = (*num % 100) / 10;
+//    int c = (*num % 10) /1;
+//    *num = c * 100 + b * 10 + a;
+//}
+//
+//int main(){
+//    int a;
+//    int b;
+//    scanf("%d %d", &a, &b);
+//    term(&a);
+//    term(&b);
+//    if (a < b)
+//        printf("%d", b);
+//    else
+//        printf("%d", a);
+//}
+//MARK: - 3052번
 #include <stdio.h>
-
-void term(int *num) {
-    int a = (*num % 1000) / 100;
-    int b = (*num % 100) / 10;
-    int c = (*num % 10) /1;
-    *num = c * 100 + b * 10 + a;
-}
-
 int main(){
-    int a;
-    int b;
-    scanf("%d %d", &a, &b);
-    term(&a);
-    term(&b);
-    if (a < b)
-        printf("%d", b);
-    else
-        printf("%d", a);
+    int num;
+    int count = 0;
+    int remain[42] = {0};
+    for (int i = 0; i < 10; i++) {
+        scanf("%d", &num);
+        remain[num % 42]++;
+    }
+    for (int i = 0; i < 42; i++) {
+        if (remain[i] > 0) {
+            count++;
+        }
+    }
+    printf("%d", count);
 }
